@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SurveySnap — アンケート回答を自動集計。満足度・NPS・自由記述をグラフで可視化。">
+  <title>SurveySnap | アンケート集計 Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header__inner">
+      <a href="../index.html" class="header__back">← ポートフォリオ</a>
+      <div class="header__brand">
+        <span class="header__logo">SurveySnap</span>
+        <span class="header__sub">アンケート集計</span>
+      </div>
+      <span class="header__demo">Demo</span>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero__grid">
+      <div class="hero__text">
+        <p class="label">Survey Analytics</p>
+        <h1>アンケート集計、<br><em>ボタン1つ</em>で完了。</h1>
+        <p>Googleフォームや店頭タブレットの回答をまとめて取り込み、満足度・NPS・自由記述の傾向を自動で可視化します。</p>
+        <div class="hero__stats">
+          <div><strong>50件</strong><span>回答集計</span></div>
+          <div><strong>3種</strong><span>グラフ表示</span></div>
+          <div><strong>即時</strong><span>ワード分析</span></div>
+        </div>
+      </div>
+      <div class="hero__preview">
+        <div class="mini-charts">
+          <div class="mini-bar">
+            <span style="height:70%"></span><span style="height:90%"></span><span style="height:55%"></span><span style="height:40%"></span><span style="height:15%"></span>
+          </div>
+          <div class="mini-donut"></div>
+        </div>
+        <div class="mini-tags">
+          <span>接客</span><span>清潔</span><span>待ち時間</span><span>価格</span>
+        </div>
+        <p class="hero__preview-note">満足度・NPS・キーワードを一画面で把握</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section demo" id="demo">
+    <div class="container">
+      <div class="section-head">
+        <p class="label">Live Demo</p>
+        <h2>店舗満足度アンケート</h2>
+        <p>デモデータ（50件）で集計を実行し、結果をグラフと一覧で確認できます。</p>
+      </div>
+
+      <div class="demo__toolbar">
+        <button class="btn btn--primary" id="runDemo">デモデータで集計</button>
+        <span class="survey-meta" id="surveyMeta">未集計</span>
+      </div>
+
+      <div class="demo__loading" id="loading" hidden>
+        <div class="spinner"></div>
+        <p>アンケート回答を集計中…</p>
+      </div>
+
+      <div class="dashboard" id="dashboard" hidden>
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <span class="kpi-card__label">回答数</span>
+            <strong class="kpi-card__value" id="kpiTotal">0</strong>
+            <span class="kpi-card__sub">件</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-card__label">平均満足度</span>
+            <strong class="kpi-card__value" id="kpiAvg">0</strong>
+            <span class="kpi-card__sub">/ 5</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-card__label">NPSスコア</span>
+            <strong class="kpi-card__value" id="kpiNps">0</strong>
+            <span class="kpi-card__sub">点</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-card__label">推奨者率</span>
+            <strong class="kpi-card__value" id="kpiPromoter">0</strong>
+            <span class="kpi-card__sub">%</span>
+          </div>
+        </div>
+
+        <div class="chart-grid">
+          <div class="chart-card">
+            <h3>満足度評価（5段階）</h3>
+            <canvas id="satisfactionChart"></canvas>
+          </div>
+          <div class="chart-card">
+            <h3>NPS分布</h3>
+            <canvas id="npsChart"></canvas>
+          </div>
+          <div class="chart-card chart-card--wide">
+            <h3>自由記述キーワード</h3>
+            <div class="word-cloud" id="wordCloud"></div>
+          </div>
+        </div>
+
+        <div class="table-card">
+          <div class="table-card__head">
+            <h3>直近の回答</h3>
+          </div>
+          <div class="table-wrap">
+            <table id="responseTable">
+              <thead>
+                <tr><th>日時</th><th>満足度</th><th>NPS</th><th>コメント</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <div class="section-head">
+        <p class="label">Features</p>
+        <h2>できること</h2>
+      </div>
+      <div class="features">
+        <div class="feature">
+          <span class="feature__icon">📊</span>
+          <h3>満足度の可視化</h3>
+          <p>5段階評価を棒グラフで表示。平均点・分布を一目で把握。</p>
+        </div>
+        <div class="feature">
+          <span class="feature__icon">🎯</span>
+          <h3>NPS自動算出</h3>
+          <p>推奨者・中立者・批判者を分類し、NPSスコアを自動計算。</p>
+        </div>
+        <div class="feature">
+          <span class="feature__icon">💬</span>
+          <h3>自由記述の傾向分析</h3>
+          <p>頻出キーワードをタグクラウドで表示。改善ポイントを発見。</p>
+        </div>
+        <div class="feature">
+          <span class="feature__icon">📥</span>
+          <h3>複数ソースの取込</h3>
+          <p>Googleフォーム・CSV・店頭タブレットの回答をまとめて集計。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <h2>御社のアンケート項目に合わせてカスタマイズできます</h2>
+      <p>業種別テンプレート、定期レポート、Slack通知なども対応可能です。</p>
+      <p class="note">※ このページはデモです。実際のシステムは要件に応じて設計・開発します。</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container"><p>&copy; 2026 SurveySnap Demo — 業務自動化ポートフォリオ</p></div>
+  </footer>
+
+</body>
+</html>

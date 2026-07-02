@@ -2,8 +2,12 @@
  * Portfolio data — used to render & filter works grid
  */
 const PORTFOLIO = [
+  { type: 'tool', tags: ['通知', 'フォーム', 'Slack'], title: 'FormNotify 問い合わせ通知', category: '業務ツール', desc: '問い合わせフォーム送信時にメール・Slackへ自動通知。通知フローをリアルタイム表示。', url: 'form-notify-demo/index.html', thumb: 'form-notify-demo/assets/images/preview.png', badge: 'Tool', featured: true },
+  { type: 'tool', tags: ['管理画面', 'ダッシュボード', 'UI'], title: 'AdminPanel 管理画面', category: '業務ツール', desc: 'ログイン・ダッシュボード・ユーザー管理テーブル。編集モーダル付き管理画面デモ。', url: 'admin-demo/index.html', thumb: 'admin-demo/assets/images/preview.png', badge: 'Tool', featured: true },
   { type: 'tool', tags: ['自動化', 'ダッシュボード'], title: 'SalesFlow 売上集計', category: '業務自動化', desc: 'Excel・CSVの手作業集計を自動化。動くダッシュボード・グラフ・CSVエクスポート。', url: 'automation-demo/index.html', thumb: 'automation-demo/assets/images/preview.png', badge: 'Tool', featured: true },
   { type: 'tool', tags: ['自動化', '勤怠'], title: 'TimeTrack 勤怠集計', category: '業務自動化', desc: '複数CSVから勤怠・残業を自動集計。部署別グラフ・出勤率の可視化。', url: 'attendance-demo/index.html', thumb: 'attendance-demo/assets/images/preview.png', badge: 'Tool', featured: true },
+  { type: 'tool', tags: ['CRM', '顧客管理', 'ダッシュボード'], title: 'CRM Lite 顧客管理', category: '業務ツール', desc: '顧客情報・商談ステータス・フォロー予定を一元管理。検索・フィルター・追加モーダル付き。', url: 'crm-demo/index.html', thumb: 'crm-demo/assets/images/preview.png', badge: 'Tool', featured: true },
+  { type: 'tool', tags: ['チャットボット', 'FAQ', '美容室'], title: 'HelpBot FAQチャット', category: '業務ツール', desc: '店舗サイトに埋め込むFAQチャットボット。キーワード応答・提案質問・入力アニメーション。', url: 'faq-bot-demo/index.html', thumb: 'faq-bot-demo/assets/images/preview.png', badge: 'Tool', featured: true },
   { type: 'tool', tags: ['予約', 'UI'], title: 'Reserve+ 予約システム', category: '業務ツール', desc: 'サロン・飲食向けの予約UIデモ。日時選択→メニュー→確認の4ステップ。', url: 'booking-demo/index.html', thumb: 'booking-demo/assets/images/preview.png', badge: 'Tool', featured: true },
   { type: 'tool', tags: ['自動化', '請求書', '入金'], title: 'BillTrack 請求管理', category: '業務自動化', desc: '請求書・入金状況を一元管理。未入金・期限超過を自動で可視化。', url: 'invoice-demo/index.html', thumb: 'invoice-demo/assets/images/preview.png', badge: 'Tool', featured: true },
   { type: 'tool', tags: ['自動化', '在庫'], title: 'StockAlert 在庫管理', category: '業務自動化', desc: '在庫不足・欠品をアラート。カテゴリ別の在庫状況をダッシュボードで把握。', url: 'inventory-demo/index.html', thumb: 'inventory-demo/assets/images/preview.png', badge: 'Tool', featured: true },
@@ -15,6 +19,8 @@ const PORTFOLIO = [
   { type: 'tool', tags: ['デスクトップ', '重複', 'ファイル'], title: 'DupScan 重複検出', category: 'デスクトップアプリ', desc: '重複ファイルをスキャンしてグループ表示。整理ボタンで一括処理（デモ）。', url: 'duplicate-demo/index.html', thumb: 'duplicate-demo/assets/images/preview.png', badge: 'App' },
   { type: 'tool', tags: ['デスクトップ', '画像', 'リサイズ'], title: 'ResizeKit 画像リサイズ', category: 'デスクトップアプリ', desc: '画像をWeb用・SNS用プリセットで一括リサイズ。実際にダウンロード可能。', url: 'resize-demo/index.html', thumb: 'resize-demo/assets/images/preview.png', badge: 'App' },
   { type: 'tool', tags: ['デスクトップ', '定型文', '効率化'], title: 'SnipPaste 定型文', category: 'デスクトップアプリ', desc: 'よく使うメール文面をワンクリックでコピー。カテゴリ検索付きランチャー。', url: 'snippet-demo/index.html', thumb: 'snippet-demo/assets/images/preview.png', badge: 'App' },
+  { type: 'tool', tags: ['シフト', '店舗', 'UI'], title: 'ShiftBoard シフト管理', category: '業務ツール', desc: '週間シフト表をクリックで編集。早番・遅番・全日を色分け、勤務時間を自動集計。', url: 'shift-demo/index.html', thumb: 'shift-demo/assets/images/preview.png', badge: 'Tool', featured: true },
+  { type: 'tool', tags: ['アンケート', '集計', 'NPS'], title: 'SurveySnap アンケート集計', category: '業務自動化', desc: '満足度・NPS・自由記述を自動集計。棒グラフ・ドーナツ・キーワードタグで可視化。', url: 'survey-demo/index.html', thumb: 'survey-demo/assets/images/preview.png', badge: 'Tool', featured: true },
   { type: 'lp', tags: ['美容'], title: '美容室 LUMIÈRE', category: '美容・サロン', desc: 'メニュー・スタイリスト紹介・予約導線を備えた美容室LP。', url: 'salon-lp/index.html', thumb: 'salon-lp/assets/images/concept-main.jpg', badge: 'LP' },
   { type: 'lp', tags: ['美容', '整体'], title: '整体院 和', category: '整体・ウェルネス', desc: '施術メニュー・お客様の声・初回体験訴求の整体LP。', url: 'wellness-lp/index.html', thumb: 'wellness-lp/assets/images/hero.jpg', badge: 'LP' },
   { type: 'lp', tags: ['飲食'], title: 'CAFÉ KOMOREBI', category: '飲食・カフェ', desc: 'こだわり・メニュー・空間紹介のカフェLP。', url: 'cafe-lp/index.html', thumb: 'cafe-lp/assets/images/hero.jpg', badge: 'LP' },
@@ -36,13 +42,18 @@ const CHART_STACK = ['HTML', 'CSS', 'JavaScript', 'Chart.js'];
 const CANVAS_STACK = ['HTML', 'CSS', 'JavaScript', 'Canvas API'];
 const BASE_STACK = ['HTML', 'CSS', 'JavaScript'];
 
+const STORAGE_STACK = ['HTML', 'CSS', 'JavaScript', 'LocalStorage'];
+
 const STACK_BY_URL = {
   'automation-demo/index.html': CHART_STACK,
   'attendance-demo/index.html': CHART_STACK,
   'invoice-demo/index.html': CHART_STACK,
   'inventory-demo/index.html': CHART_STACK,
   'expense-demo/index.html': CHART_STACK,
+  'survey-demo/index.html': CHART_STACK,
   'resize-demo/index.html': CANVAS_STACK,
+  'crm-demo/index.html': STORAGE_STACK,
+  'admin-demo/index.html': STORAGE_STACK,
 };
 
 function getStack(item) {

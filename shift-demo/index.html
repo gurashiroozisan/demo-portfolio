@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ShiftBoard — 週間シフト表をクリックで編集。スタッフ別の勤務時間を自動集計。">
+  <title>ShiftBoard | シフト管理 Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header__inner">
+      <a href="../index.html" class="header__back">← ポートフォリオ</a>
+      <div class="header__brand">
+        <span class="header__logo">ShiftBoard</span>
+        <span class="header__sub">シフト管理</span>
+      </div>
+      <span class="header__demo">Demo</span>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero__grid">
+      <div class="hero__text">
+        <p class="label">Shift Management</p>
+        <h1>週間シフト、<br><em>クリックだけ</em>で作成。</h1>
+        <p>セルをタップして早番・遅番・全日・休みを切り替え。スタッフ別の勤務時間をリアルタイムで集計します。</p>
+        <div class="hero__stats">
+          <div><strong>5名</strong><span>スタッフ</span></div>
+          <div><strong>1週間</strong><span>一画面管理</span></div>
+          <div><strong>即時</strong><span>時間集計</span></div>
+        </div>
+      </div>
+      <div class="hero__preview">
+        <div class="mini-grid">
+          <div class="mini-grid__head"><span></span><span>月</span><span>火</span><span>水</span></div>
+          <div class="mini-grid__row"><span>田中</span><span class="c-early">早</span><span class="c-full">全</span><span class="c-off">休</span></div>
+          <div class="mini-grid__row"><span>佐藤</span><span class="c-late">遅</span><span class="c-early">早</span><span class="c-full">全</span></div>
+          <div class="mini-grid__row"><span>鈴木</span><span class="c-full">全</span><span class="c-off">休</span><span class="c-late">遅</span></div>
+        </div>
+        <p class="hero__preview-note">セルをクリックしてシフトを切り替え</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section demo" id="demo">
+    <div class="container">
+      <div class="section-head">
+        <p class="label">Live Demo</p>
+        <h2>週間シフト表</h2>
+        <p>各セルをクリックすると 休み → 早番 → 遅番 → 全日 の順に切り替わります。</p>
+      </div>
+
+      <div class="week-nav">
+        <button class="btn btn--sm" id="prevWeek" aria-label="前の週">←</button>
+        <span class="week-nav__label" id="weekLabel">2026年7月 第1週</span>
+        <button class="btn btn--sm" id="nextWeek" aria-label="次の週">→</button>
+      </div>
+
+      <div class="legend">
+        <span class="legend__item"><i class="swatch swatch--off"></i>休み</span>
+        <span class="legend__item"><i class="swatch swatch--early"></i>早番（6h）</span>
+        <span class="legend__item"><i class="swatch swatch--late"></i>遅番（6h）</span>
+        <span class="legend__item"><i class="swatch swatch--full"></i>全日（8h）</span>
+      </div>
+
+      <div class="shift-wrap">
+        <table class="shift-table" id="shiftTable">
+          <thead>
+            <tr>
+              <th class="shift-table__name">スタッフ</th>
+              <th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th><th>日</th>
+            </tr>
+          </thead>
+          <tbody id="shiftBody"></tbody>
+        </table>
+      </div>
+
+      <div class="summary" id="summary"></div>
+
+      <div class="demo__actions">
+        <button class="btn btn--primary" id="confirmBtn">シフト確定（デモ）</button>
+        <button class="btn btn--outline" id="resetBtn">リセット</button>
+      </div>
+
+      <div class="toast hidden" id="toast"></div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <div class="section-head">
+        <p class="label">Features</p>
+        <h2>できること</h2>
+      </div>
+      <div class="features">
+        <div class="feature">
+          <span class="feature__icon">📅</span>
+          <h3>週間グリッド編集</h3>
+          <p>スタッフ×曜日のマトリクスで、直感的にシフトを組めます。</p>
+        </div>
+        <div class="feature">
+          <span class="feature__icon">🎨</span>
+          <h3>色分け表示</h3>
+          <p>早番・遅番・全日・休みを色で区別。一目で把握できます。</p>
+        </div>
+        <div class="feature">
+          <span class="feature__icon">⏱</span>
+          <h3>勤務時間の自動集計</h3>
+          <p>スタッフごとの週間勤務時間をリアルタイムで算出。</p>
+        </div>
+        <div class="feature">
+          <span class="feature__icon">📤</span>
+          <h3>確定・共有</h3>
+          <p>確定後にスタッフへ通知、PDF出力、LINE連携も対応可能。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <h2>御社のシフトルールに合わせてカスタマイズできます</h2>
+      <p>店舗数・役職・希望休の管理など、業態に合わせた設計が可能です。</p>
+      <p class="note">※ このページはデモです。実際のシステムは要件に応じて設計・開発します。</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container"><p>&copy; 2026 ShiftBoard Demo — 業務自動化ポートフォリオ</p></div>
+  </footer>
+
+</body>
+</html>

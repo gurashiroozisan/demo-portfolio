@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FormNotify — 問い合わせフォーム送信時にメール・Slackへ自動通知するデモ。">
+  <title>FormNotify | 問い合わせ通知デモ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="header__inner">
+      <a href="../index.html" class="header__back">← ポートフォリオ</a>
+      <div class="header__brand">
+        <span class="header__logo">FormNotify</span>
+        <span class="header__sub">問い合わせ通知</span>
+      </div>
+      <span class="header__badge">Demo</span>
+    </div>
+  </header>
+
+  <main class="app">
+    <section class="panel panel--form">
+      <div class="panel__head">
+        <p class="label">Contact Form</p>
+        <h1>お問い合わせ</h1>
+        <p class="panel__desc">送信すると担当者へメール・Slackに自動通知されます（デモ）。</p>
+      </div>
+
+      <form class="form" id="contactForm" novalidate>
+        <div class="field">
+          <label for="name">お名前 <span class="req">必須</span></label>
+          <input type="text" id="name" name="name" required placeholder="山田 太郎" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="email">メールアドレス <span class="req">必須</span></label>
+          <input type="email" id="email" name="email" required placeholder="taro@example.com" autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="message">お問い合わせ内容 <span class="req">必須</span></label>
+          <textarea id="message" name="message" rows="5" required placeholder="ご質問・ご相談内容をご記入ください"></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary" id="submitBtn">
+          <span class="btn__text">送信する</span>
+          <span class="btn__loader" hidden></span>
+        </button>
+      </form>
+    </section>
+
+    <section class="panel panel--flow">
+      <div class="panel__head">
+        <p class="label">Notification Flow</p>
+        <h2>通知フロー</h2>
+        <p class="panel__desc">フォーム送信後の処理状況をリアルタイム表示。</p>
+      </div>
+
+      <ol class="steps" id="steps">
+        <li class="step" data-step="form">
+          <div class="step__icon">
+            <svg class="step__pending" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
+            <svg class="step__check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" hidden><path d="M20 6 9 17l-5-5"/></svg>
+          </div>
+          <div class="step__body">
+            <strong>フォーム送信</strong>
+            <span class="step__status">待機中</span>
+          </div>
+        </li>
+        <li class="step" data-step="email">
+          <div class="step__icon">
+            <svg class="step__pending" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
+            <svg class="step__check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" hidden><path d="M20 6 9 17l-5-5"/></svg>
+          </div>
+          <div class="step__body">
+            <strong>メール通知</strong>
+            <span class="step__status">待機中</span>
+          </div>
+        </li>
+        <li class="step" data-step="slack">
+          <div class="step__icon">
+            <svg class="step__pending" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
+            <svg class="step__check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" hidden><path d="M20 6 9 17l-5-5"/></svg>
+          </div>
+          <div class="step__body">
+            <strong>Slack通知</strong>
+            <span class="step__status">待機中</span>
+          </div>
+        </li>
+      </ol>
+
+      <div class="previews" id="previews" hidden>
+        <div class="preview preview--email">
+          <div class="preview__header">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <span>メールプレビュー</span>
+          </div>
+          <div class="preview__content" id="emailPreview">
+            <p class="preview__meta"><span>宛先:</span> support@demo.jp</p>
+            <p class="preview__meta"><span>件名:</span> 【新規お問い合わせ】</p>
+            <hr>
+            <p class="preview__body" id="emailBody">—</p>
+          </div>
+        </div>
+
+        <div class="preview preview--slack">
+          <div class="preview__header">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zM15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>
+            <span>#contact-notify</span>
+          </div>
+          <div class="preview__content preview__content--slack" id="slackPreview">
+            <div class="slack-msg">
+              <div class="slack-msg__avatar">FN</div>
+              <div class="slack-msg__body">
+                <p class="slack-msg__name">FormNotify Bot <span>たった今</span></p>
+                <p class="slack-msg__text" id="slackBody">—</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="idle" id="idleState">
+        <div class="idle__icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <p>左のフォームから送信すると<br>通知フローが開始されます</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
