@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="DupScan — 重複ファイルを検出・整理するデスクトップアプリ（デモ）。">
+  <title>DupScan | 重複ファイル検出 Demo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a href="../index.html" class="back-link">← ポートフォリオ</a>
+
+  <section class="landing">
+    <p class="label">Desktop App Demo</p>
+    <h1>重複ファイル、<br><em>自動で見つけて整理。</em></h1>
+    <p>同名・同サイズのファイルをスキャン。コピーやバックアップの重複を一括で検出・整理。</p>
+  </section>
+
+  <div class="desktop-wrap">
+    <div class="window" id="app">
+      <div class="titlebar">
+        <div class="titlebar__dots"><span></span><span></span><span></span></div>
+        <span class="titlebar__title">DupScan — 重複ファイル検出</span>
+        <span class="titlebar__demo">Demo</span>
+      </div>
+      <div class="window__body">
+        <aside class="sidebar">
+          <p class="sidebar__label">スキャン対象</p>
+          <div class="scan-target">
+            <span class="folder-icon">📁</span>
+            <div>
+              <div class="folder-name">ダウンロード</div>
+              <div class="folder-path">C:\Users\...\Downloads</div>
+            </div>
+          </div>
+          <div class="scan-stats hidden" id="scanStats">
+            <div class="stat">
+              <span class="stat__num" id="statFiles">12</span>
+              <span class="stat__label">ファイル</span>
+            </div>
+            <div class="stat stat--warn">
+              <span class="stat__num" id="statGroups">3</span>
+              <span class="stat__label">重複グループ</span>
+            </div>
+          </div>
+          <button class="btn-primary" id="scanBtn">スキャン開始</button>
+          <button class="btn-clean hidden" id="cleanBtn">重複を整理（デモ）</button>
+          <button class="btn-reset hidden" id="resetBtn">リセット</button>
+          <p class="sidebar__note">※ ブラウザ上のデモです</p>
+        </aside>
+        <main class="main">
+          <div class="toolbar">
+            <span id="statusLabel">スキャン待機中</span>
+            <div class="progress-bar hidden" id="progressBar">
+              <div class="progress-bar__fill" id="progressFill"></div>
+            </div>
+          </div>
+          <div class="scan-banner hidden" id="scanBanner">
+            <span class="banner-icon">⚠</span>
+            <span id="bannerText">8件中 3グループの重複を検出</span>
+          </div>
+          <ul class="file-list" id="fileList"></ul>
+          <div class="result hidden" id="cleanResult">
+            <div class="result__icon">🗑</div>
+            <h3>整理完了！</h3>
+            <p id="cleanResultText"></p>
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <section class="features">
+    <div class="feature"><strong>ハッシュ照合</strong><span>ファイル内容の完全一致を検出</span></div>
+    <div class="feature"><strong>グループ表示</strong><span>重複ファイルを色分けで一覧</span></div>
+    <div class="feature"><strong>安全な整理</strong><span>ゴミ箱に移動。復元可能</span></div>
+  </section>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

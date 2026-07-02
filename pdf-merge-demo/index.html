@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PDF Stitch — PDFファイルの結合・分割デスクトップアプリ（デモ）。">
+  <title>PDF Stitch | PDF結合 Demo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a href="../index.html" class="back-link">← ポートフォリオ</a>
+
+  <section class="landing">
+    <p class="label">Desktop App Demo</p>
+    <h1>PDFを結合・分割、<br><em>ドラッグで並べ替え。</em></h1>
+    <p>複数のPDFを1つにまとめたり、必要なページだけを取り出す。直感的な操作で書類整理。</p>
+  </section>
+
+  <div class="desktop-wrap">
+    <div class="window" id="app">
+      <div class="titlebar">
+        <div class="titlebar__dots"><span></span><span></span><span></span></div>
+        <span class="titlebar__title">PDF Stitch — PDF結合</span>
+        <span class="titlebar__demo">Demo</span>
+      </div>
+      <div class="window__body">
+        <div class="tabs">
+          <button class="tab active" data-tab="merge">結合</button>
+          <button class="tab" data-tab="split">分割</button>
+        </div>
+        <div class="tab-content">
+          <!-- Merge panel -->
+          <div class="panel active" id="panelMerge">
+            <div class="panel__header">
+              <span>結合するPDF（並べ替え可）</span>
+              <span class="page-total" id="mergePageTotal">合計 18ページ</span>
+            </div>
+            <ul class="pdf-list" id="pdfList"></ul>
+            <div class="panel__actions">
+              <button class="btn-primary" id="mergeBtn">結合する（デモ）</button>
+              <button class="btn-reset hidden" id="mergeResetBtn">リセット</button>
+            </div>
+            <div class="result hidden" id="mergeResult">
+              <div class="result__icon">📑</div>
+              <h3>結合完了！</h3>
+              <p id="mergeResultText"></p>
+            </div>
+          </div>
+
+          <!-- Split panel -->
+          <div class="panel" id="panelSplit">
+            <div class="panel__header">
+              <span>分割元: 結合済みレポート.pdf</span>
+              <span class="page-total">全 18ページ</span>
+            </div>
+            <p class="split-hint">抽出するページを選択してください</p>
+            <div class="page-grid" id="pageGrid"></div>
+            <div class="split-range">
+              <label>範囲指定:</label>
+              <input type="text" id="rangeInput" value="1-3" readonly>
+              <span class="range-note">（デモ: ページ 1〜3 を選択中）</span>
+            </div>
+            <div class="panel__actions">
+              <button class="btn-primary" id="splitBtn">分割する（デモ）</button>
+            </div>
+            <div class="result hidden" id="splitResult">
+              <div class="result__icon">✂</div>
+              <h3>分割完了！</h3>
+              <p id="splitResultText"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="features">
+    <div class="feature"><strong>ドラッグ並べ替え</strong><span>結合順序を直感的に変更</span></div>
+    <div class="feature"><strong>ページ単位分割</strong><span>必要なページだけを新しいPDFに</span></div>
+    <div class="feature"><strong>高速処理</strong><span>ローカル完結で安全・高速</span></div>
+  </section>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

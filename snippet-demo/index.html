@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SnipPaste — 定型文をすばやくコピーするデスクトップアプリ（デモ）。">
+  <title>SnipPaste | 定型文ランチャー Demo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a href="../index.html" class="back-link">← ポートフォリオ</a>
+
+  <section class="landing">
+    <p class="label">Desktop App Demo</p>
+    <h1>定型文、<br><em>ワンクリックでコピー。</em></h1>
+    <p>よく使うメール・チャットの返信文をカテゴリ別に整理。検索してすぐ貼り付け。</p>
+  </section>
+
+  <div class="desktop-wrap">
+    <div class="window" id="app">
+      <div class="titlebar">
+        <div class="titlebar__dots"><span></span><span></span><span></span></div>
+        <span class="titlebar__title">SnipPaste — 定型文ランチャー</span>
+        <span class="titlebar__demo">Demo</span>
+      </div>
+      <div class="window__body">
+        <aside class="sidebar">
+          <p class="sidebar__label">カテゴリ</p>
+          <ul class="category-list" id="categoryList">
+            <li class="active" data-cat="all">📋 すべて</li>
+            <li data-cat="sales">💼 営業</li>
+            <li data-cat="office">📎 事務</li>
+            <li data-cat="customer">💬 カスタマー</li>
+          </ul>
+          <div class="sidebar__stats">
+            <p>登録: <strong id="totalCount">0</strong> 件</p>
+            <p>表示: <strong id="visibleCount">0</strong> 件</p>
+          </div>
+          <p class="sidebar__note">※ ブラウザ上のデモです</p>
+        </aside>
+        <main class="main">
+          <div class="toolbar">
+            <div class="search-box">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <input type="search" id="searchInput" placeholder="定型文を検索…" autocomplete="off">
+            </div>
+          </div>
+          <ul class="snippet-list" id="snippetList"></ul>
+          <div class="empty-state hidden" id="emptyState">
+            <p>該当する定型文がありません</p>
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast hidden" id="toast">コピーしました</div>
+
+  <section class="features">
+    <div class="feature"><strong>カテゴリ整理</strong><span>営業・事務・カスタマー対応別に分類</span></div>
+    <div class="feature"><strong>即コピー</strong><span>クリック一発でクリップボードにコピー</span></div>
+    <div class="feature"><strong>検索フィルター</strong><span>タイトル・本文からキーワード検索</span></div>
+  </section>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
