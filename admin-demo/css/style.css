@@ -40,6 +40,12 @@ a { color: inherit; text-decoration: none; }
     var(--bg);
 }
 
+.login-screen[hidden],
+.dashboard[hidden],
+.modal-overlay[hidden] {
+  display: none;
+}
+
 .login-card {
   width: 100%;
   max-width: 400px;

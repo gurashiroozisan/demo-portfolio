@@ -151,9 +151,5 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && isOpen) closeChat();
 });
 
-// Auto-open hint after short delay (demo showcase)
-setTimeout(() => {
-  if (!hasInteracted && !isOpen) {
-    fabBadge.textContent = '1';
-  }
-}, 2000);
+// Open by default so the page immediately reads as a chatbot demo.
+openChat();
