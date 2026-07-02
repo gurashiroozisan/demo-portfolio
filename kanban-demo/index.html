@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FlowBoard — カンバンボードで案件をドラッグ＆ドロップ管理。担当者・期限を一覧表示。">
+  <title>FlowBoard | カンバンボード Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header__inner">
+      <a href="../index.html" class="header__back">← ポートフォリオ</a>
+      <div class="header__brand">
+        <span class="header__logo">FlowBoard</span>
+        <span class="header__sub">カンバンボード</span>
+      </div>
+      <span class="header__demo">Demo</span>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero__grid">
+      <div class="hero__text">
+        <p class="label">Task Management</p>
+        <h1>案件の流れを、<br><em>ひと目で</em>把握。</h1>
+        <p>カードをドラッグしてステータスを更新。担当者と期限をボード上で管理し、チームの進捗を共有できます。</p>
+        <div class="hero__stats">
+          <div><strong>3列</strong><span>ステータス管理</span></div>
+          <div><strong>D&D</strong><span>直感操作</span></div>
+          <div><strong>自動保存</strong><span>ブラウザ内</span></div>
+        </div>
+      </div>
+      <div class="hero__preview">
+        <div class="mini-board">
+          <div class="mini-board__col">
+            <span class="mini-board__head">未着手</span>
+            <div class="mini-card">LP制作</div>
+            <div class="mini-card">フォーム改修</div>
+          </div>
+          <div class="mini-board__col mini-board__col--active">
+            <span class="mini-board__head">進行中</span>
+            <div class="mini-card mini-card--accent">ECリニューアル</div>
+          </div>
+          <div class="mini-board__col">
+            <span class="mini-board__head">完了</span>
+            <div class="mini-card mini-card--done">名刺デザイン</div>
+          </div>
+        </div>
+        <p class="hero__preview-note">カードをドラッグして列を移動</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section demo" id="demo">
+    <div class="container">
+      <div class="section-head">
+        <p class="label">Live Demo</p>
+        <h2>カンバンボード</h2>
+        <p>カードをドラッグ＆ドロップで列間を移動。追加・削除もこの画面で操作できます。</p>
+      </div>
+
+      <div class="demo__toolbar">
+        <button class="btn btn--primary" id="addTaskBtn" type="button">＋ タスクを追加</button>
+        <button class="btn btn--outline" id="resetBtn" type="button">初期データに戻す</button>
+      </div>
+
+      <div class="board" id="board">
+        <div class="column" data-column="todo">
+          <div class="column__head">
+            <h3>未着手</h3>
+            <span class="column__count" id="count-todo">0</span>
+          </div>
+          <div class="column__list" id="list-todo"></div>
+        </div>
+        <div class="column" data-column="doing">
+          <div class="column__head">
+            <h3>進行中</h3>
+            <span class="column__count" id="count-doing">0</span>
+          </div>
+          <div class="column__list" id="list-doing"></div>
+        </div>
+        <div class="column" data-column="done">
+          <div class="column__head">
+            <h3>完了</h3>
+            <span class="column__count" id="count-done">0</span>
+          </div>
+          <div class="column__list" id="list-done"></div>
+        </div>
+      </div>
+
+      <div class="toast hidden" id="toast"></div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <div class="section-head">
+        <p class="label">Features</p>
+        <h2>できること</h2>
+      </div>
+      <div class="features">
+        <div class="feature">
+          <span class="feature__icon">📋</span>
+          <h3>3列カンバン</h3>
+          <p>未着手・進行中・完了のステータスで案件を整理。列ごとの件数を自動表示。</p>
+        </div>
+        <div class="feature">
+          <span class="feature__icon">✋</span>
+          <h3>ドラッグ＆ドロップ</h3>
+          <p>カードを掴んで列間を移動。直感的に進捗を更新できます。</p>
+        </div>
+        <div class="feature">
+          <span class="feature__icon">👤</span>
+          <h3>担当者・期限管理</h3>
+          <p>案件名・担当者・期限をカードに表示。チーム全体の状況を把握。</p>
+        </div>
+        <div class="feature">
+          <span class="feature__icon">💾</span>
+          <h3>自動保存</h3>
+          <p>操作内容をブラウザに保存。ページを再読み込みしても状態を維持。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <h2>御社のワークフローに合わせてカスタマイズできます</h2>
+      <p>列の追加、優先度ラベル、Slack通知、メンバー権限など、要件に応じた設計が可能です。</p>
+      <p class="note">※ このページはデモです。実際のシステムは要件に応じて設計・開発します。</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container"><p>&copy; 2026 FlowBoard Demo — 業務自動化ポートフォリオ</p></div>
+  </footer>
+
+  <div class="modal" id="modal" hidden>
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__panel" role="dialog" aria-labelledby="modalTitle">
+      <div class="modal__head">
+        <h2 id="modalTitle">タスクを追加</h2>
+        <button class="modal__close" type="button" data-close aria-label="閉じる">&times;</button>
+      </div>
+      <form class="modal__form" id="addForm">
+        <label class="field">
+          <span>案件名</span>
+          <input type="text" id="taskTitle" required placeholder="例：新規LP制作" maxlength="60">
+        </label>
+        <label class="field">
+          <span>担当者</span>
+          <input type="text" id="taskAssignee" required placeholder="例：田中 花子" maxlength="30">
+        </label>
+        <label class="field">
+          <span>期限</span>
+          <input type="date" id="taskDue" required>
+        </label>
+        <label class="field">
+          <span>ステータス</span>
+          <select id="taskColumn">
+            <option value="todo">未着手</option>
+            <option value="doing">進行中</option>
+            <option value="done">完了</option>
+          </select>
+        </label>
+        <div class="modal__actions">
+          <button type="button" class="btn btn--outline" data-close>キャンセル</button>
+          <button type="submit" class="btn btn--primary">追加する</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MemberPortal — 会員マイページ・決済UIのデモ。">
+  <title>MemberPortal | 会員マイページ + 決済UI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Login -->
+  <div class="login-screen" id="loginScreen">
+    <div class="login-card">
+      <a href="../index.html" class="login-card__back">← ポートフォリオ</a>
+      <div class="login-card__brand">
+        <div class="login-card__logo">MP</div>
+        <h1>MemberPortal</h1>
+        <p>会員マイページ + 決済UI</p>
+      </div>
+      <form class="login-form" id="loginForm">
+        <div class="field">
+          <label for="loginEmail">メールアドレス</label>
+          <input type="email" id="loginEmail" required placeholder="demo@example.com" autocomplete="username">
+        </div>
+        <div class="field">
+          <label for="loginPassword">パスワード</label>
+          <input type="password" id="loginPassword" required placeholder="••••••••" autocomplete="current-password">
+        </div>
+        <p class="login-error" id="loginError" hidden>メールアドレスまたはパスワードが正しくありません</p>
+        <button type="submit" class="btn btn--primary btn--full">ログイン</button>
+      </form>
+      <div class="login-hint">
+        <p class="login-hint__title">デモ用アカウント</p>
+        <p><span>メール:</span> demo@example.com</p>
+        <p><span>パスワード:</span> demo123</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div class="portal" id="portal" hidden>
+    <header class="portal-header">
+      <div class="portal-header__brand">
+        <div class="portal-header__logo">MP</div>
+        <div>
+          <strong>MemberPortal</strong>
+          <span>会員マイページ</span>
+        </div>
+      </div>
+      <div class="portal-header__actions">
+        <span class="portal-header__user" id="headerUserEmail">demo@example.com</span>
+        <button type="button" class="btn btn--ghost" id="logoutBtn">ログアウト</button>
+      </div>
+    </header>
+
+    <main class="portal-main">
+      <nav class="tabs" role="tablist">
+        <button type="button" class="tab is-active" data-tab="profile" role="tab" aria-selected="true">プロフィール編集</button>
+        <button type="button" class="tab" data-tab="orders" role="tab" aria-selected="false">注文履歴</button>
+      </nav>
+
+      <!-- Profile -->
+      <section class="panel" id="panelProfile" role="tabpanel">
+        <div class="panel__head">
+          <h2>プロフィール編集</h2>
+          <p class="muted">会員情報を更新できます（デモ: localStorage に保存）</p>
+        </div>
+        <form class="profile-form" id="profileForm">
+          <div class="field">
+            <label for="profileName">お名前</label>
+            <input type="text" id="profileName" required placeholder="山田 太郎">
+          </div>
+          <div class="field">
+            <label for="profileEmail">メールアドレス</label>
+            <input type="email" id="profileEmail" required placeholder="demo@example.com">
+          </div>
+          <div class="field">
+            <label for="profilePhone">電話番号</label>
+            <input type="tel" id="profilePhone" placeholder="090-1234-5678">
+          </div>
+          <button type="submit" class="btn btn--primary">保存する</button>
+        </form>
+      </section>
+
+      <!-- Orders -->
+      <section class="panel" id="panelOrders" role="tabpanel" hidden>
+        <div class="panel__head">
+          <h2>注文履歴</h2>
+          <p class="muted">過去のご注文一覧</p>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>注文番号</th>
+                <th>商品名</th>
+                <th>日付</th>
+                <th>金額</th>
+                <th>ステータス</th>
+              </tr>
+            </thead>
+            <tbody id="ordersBody"></tbody>
+          </table>
+        </div>
+        <div class="panel__footer">
+          <button type="button" class="btn btn--primary btn--lg" id="checkoutOpenBtn">決済へ進む</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Checkout overlay -->
+  <div class="checkout-overlay" id="checkoutOverlay" hidden>
+    <div class="checkout">
+      <button type="button" class="checkout__close" id="checkoutCloseBtn" aria-label="閉じる">&times;</button>
+
+      <!-- Payment form -->
+      <div class="checkout__step" id="checkoutStepForm">
+        <div class="checkout__header">
+          <div class="checkout__stripe-badge">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            お支払い
+          </div>
+          <h2>カード情報を入力</h2>
+          <p class="muted">デモ用の決済画面です。実際の課金は行われません。</p>
+        </div>
+
+        <div class="checkout__grid">
+          <div class="checkout__summary">
+            <h3>ご注文内容</h3>
+            <div class="summary-item">
+              <div>
+                <strong>プレミアム会員プラン</strong>
+                <span class="muted">年間サブスクリプション</span>
+              </div>
+              <span class="summary-item__price">¥9,800</span>
+            </div>
+            <div class="summary-item">
+              <div>
+                <strong>送料</strong>
+              </div>
+              <span class="summary-item__price">¥0</span>
+            </div>
+            <div class="summary-total">
+              <span>合計</span>
+              <span class="summary-total__amount">¥9,800</span>
+            </div>
+          </div>
+
+          <form class="payment-form" id="paymentForm">
+            <div class="field">
+              <label for="cardNumber">カード番号</label>
+              <input type="text" id="cardNumber" inputmode="numeric" maxlength="19" placeholder="4242 4242 4242 4242" required>
+            </div>
+            <div class="payment-form__row">
+              <div class="field">
+                <label for="cardExpiry">有効期限</label>
+                <input type="text" id="cardExpiry" placeholder="MM / YY" maxlength="7" required>
+              </div>
+              <div class="field">
+                <label for="cardCvc">CVC</label>
+                <input type="text" id="cardCvc" inputmode="numeric" maxlength="4" placeholder="123" required>
+              </div>
+            </div>
+            <div class="field">
+              <label for="cardName">カード名義</label>
+              <input type="text" id="cardName" placeholder="YAMADA TARO" required>
+            </div>
+            <button type="submit" class="btn btn--pay btn--full">
+              <span>¥9,800 を支払う</span>
+            </button>
+            <p class="payment-form__secure">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              SSL暗号化通信（デモ）
+            </p>
+          </form>
+        </div>
+      </div>
+
+      <!-- Success -->
+      <div class="checkout__step checkout__success" id="checkoutStepSuccess" hidden>
+        <div class="success-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h2>お支払いが完了しました</h2>
+        <p class="muted">ご注文ありがとうございます。確認メールをお送りしました（デモ）。</p>
+        <div class="success-receipt">
+          <div><span>注文番号</span><strong id="successOrderId">—</strong></div>
+          <div><span>お支払い金額</span><strong>¥9,800</strong></div>
+        </div>
+        <button type="button" class="btn btn--primary btn--full" id="checkoutDoneBtn">マイページに戻る</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" hidden>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    <span id="toastMessage">保存しました</span>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

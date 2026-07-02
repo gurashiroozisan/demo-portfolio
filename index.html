@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Web制作・業務自動化のデモポートフォリオ。LP・HP・業務ツールの制作事例を業種別にご覧いただけます。">
+  <meta name="description" content="Web制作・業務自動化のフリーランスポートフォリオ。LP・HP・業務ツールの制作事例と料金目安をご覧いただけます。">
   <title>デモポートフォリオ | Web制作・業務自動化</title>
   <meta property="og:type" content="website">
   <meta property="og:title" content="デモポートフォリオ | Web制作・業務自動化">
@@ -24,8 +24,9 @@
     <div class="header__inner">
       <a href="#" class="header__logo">Demo Portfolio</a>
       <nav class="header__nav">
+        <a href="#profile">Profile</a>
         <a href="#works">Works</a>
-        <a href="#about">About</a>
+        <a href="#pricing">Pricing</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
@@ -34,25 +35,61 @@
   <section class="hero">
     <div class="container hero__inner">
       <div class="hero__text">
-        <p class="hero__label">Portfolio</p>
-        <h1>Web制作・業務自動化<br>デモポートフォリオ</h1>
-        <p class="hero__desc">LP・コーポレートサイト・業務ツールまで。業種別の制作デモをカテゴリやキーワードで絞り込んでご覧ください。</p>
+        <p class="hero__label">Freelance Portfolio</p>
+        <h1>Web制作・業務自動化<br>フリーランスポートフォリオ</h1>
+        <p class="hero__desc">LP・コーポレートサイトから、Excel地獄をなくす業務ツールまで。課題→解決→効果の事例形式で、制作イメージをそのままご確認いただけます。</p>
+        <div class="hero__actions">
+          <a href="#works" class="btn btn--primary">制作デモを見る</a>
+          <a href="#contact" class="btn btn--outline">お仕事の相談</a>
+        </div>
       </div>
       <div class="hero__stats">
         <div class="stat"><strong id="statTotal">0</strong><span>Works</span></div>
         <div class="stat"><strong id="statTool">0</strong><span>業務ツール</span></div>
         <div class="stat"><strong id="statLp">0</strong><span>LP</span></div>
-        <div class="stat"><strong id="statHp">0</strong><span>HP</span></div>
+        <div class="stat"><strong id="statHp">0</strong><span>HP・メディア</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="profile" id="profile">
+    <div class="container profile__grid">
+      <div class="profile__card">
+        <div class="profile__avatar" aria-hidden="true">DP</div>
+        <div>
+          <p class="section-label">Profile</p>
+          <h2>Web制作 × 業務自動化</h2>
+          <p class="profile__role">フリーランス / Webエンジニア</p>
+        </div>
+      </div>
+      <div class="profile__body">
+        <p>小規模事業者・店舗・士業向けに、<strong>「見た目がきれい」だけでなく「業務が楽になる」</strong>Web制作を行っています。LP・HPのデザインから、売上集計・在庫管理・問い合わせ通知などの業務ツールまで一貫対応。</p>
+        <ul class="profile__skills">
+          <li>LP / コーポレートサイト制作</li>
+          <li>業務ダッシュボード・管理画面</li>
+          <li>CSV / Excel 集計の自動化</li>
+          <li>API連携・Webhook・通知フロー</li>
+          <li>会員ページ・決済UI・予約導線</li>
+        </ul>
+        <div class="profile__tech">
+          <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Chart.js</span><span>CSV処理</span><span>Git</span><span>Vercel</span>
+        </div>
       </div>
     </div>
   </section>
 
   <main class="main" id="works">
     <div class="container">
+      <div class="section-head">
+        <p class="section-label">Works</p>
+        <h2>制作デモ一覧</h2>
+        <p class="section-desc">各カードに<strong>課題 → 解決 → 効果</strong>を記載。カテゴリやキーワードで絞り込めます。</p>
+      </div>
+
       <div class="toolbar" id="toolbar">
         <div class="toolbar__search">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-          <input type="search" id="search" placeholder="キーワードで検索（例：美容室、予約、士業）" autocomplete="off">
+          <input type="search" id="search" placeholder="キーワードで検索（例：CRM、API連携、美容室）" autocomplete="off">
         </div>
         <div class="filter">
           <button class="filter__btn is-active" data-filter="all">すべて</button>
@@ -72,31 +109,91 @@
     </div>
   </main>
 
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <p class="section-label">Pricing</p>
+      <h2>料金目安</h2>
+      <p class="section-desc">内容・規模により変動します。まずはお気軽にご相談ください。</p>
+      <div class="pricing__grid">
+        <article class="price-card">
+          <p class="price-card__type">LP制作</p>
+          <p class="price-card__amount"><span>¥</span>50,000<span class="price-card__from">〜</span></p>
+          <ul>
+            <li>1ページ構成のランディングページ</li>
+            <li>スマホ対応・問い合わせ導線</li>
+            <li>ヒーロー・メニュー・CTA設計</li>
+          </ul>
+          <a href="#contact" class="btn btn--outline btn--full">相談する</a>
+        </article>
+        <article class="price-card price-card--featured">
+          <p class="price-card__badge">人気</p>
+          <p class="price-card__type">コーポレートHP</p>
+          <p class="price-card__amount"><span>¥</span>150,000<span class="price-card__from">〜</span></p>
+          <ul>
+            <li>3〜5ページ構成</li>
+            <li>会社概要・サービス・実績・問い合わせ</li>
+            <li>採用ページ・ブログ追加も可</li>
+          </ul>
+          <a href="#contact" class="btn btn--primary btn--full">相談する</a>
+        </article>
+        <article class="price-card">
+          <p class="price-card__type">業務自動化・ツール</p>
+          <p class="price-card__amount"><span>¥</span>80,000<span class="price-card__from">〜</span></p>
+          <ul>
+            <li>CSV/Excel集計の自動化</li>
+            <li>ダッシュボード・管理画面</li>
+            <li>API連携・通知フロー構築</li>
+          </ul>
+          <a href="#contact" class="btn btn--outline btn--full">相談する</a>
+        </article>
+      </div>
+      <p class="pricing__note">※ 上記は目安です。既存サイト改修・機能追加は別途お見積りします。</p>
+    </div>
+  </section>
+
   <section class="about" id="about">
     <div class="container about__grid">
       <div>
         <p class="section-label">About</p>
-        <h2>制作デモについて</h2>
-        <p>このサイトは、Web制作・業務自動化のスキルをご紹介するためのデモポートフォリオです。架空の店舗・企業名を使用しており、実在のものとは関係ありません。</p>
-        <p>LP・HPのデザインから、Excel/CSV集計の自動化ツールまで、御社の課題に合わせてカスタマイズして制作します。</p>
+        <h2>制作の進め方</h2>
+        <p>ヒアリング → 構成案 → デモ制作 → 修正 → 納品の流れで進めます。業務ツールは「いま困っている作業」を一緒に整理し、最小構成から始めることも可能です。</p>
+        <p>デモサイトは架空の店舗・企業名を使用しています。実在のものとは関係ありません。</p>
       </div>
       <ul class="about__list">
-        <li><strong>Web制作</strong><span>LP・コーポレートサイト・採用ページ</span></li>
+        <li><strong>Web制作</strong><span>LP・コーポレートサイト・採用ページ・EC導線</span></li>
         <li><strong>業務自動化</strong><span>売上・勤怠・請求・在庫・経費・アンケート集計</span></li>
-        <li><strong>業務ツール</strong><span>CRM・チャットボット・問い合わせ通知・管理画面・シフト管理</span></li>
-        <li><strong>UI開発</strong><span>予約・見積・ダッシュボード・デスクトップツール</span></li>
+        <li><strong>業務ツール</strong><span>CRM・API連携・カンバン・会員ページ・管理画面</span></li>
+        <li><strong>運用サポート</strong><span>更新・機能追加・デプロイ（Git / Vercel）</span></li>
       </ul>
     </div>
   </section>
 
   <section class="cta" id="contact">
     <div class="container">
+      <p class="section-label">Contact</p>
       <h2>お仕事のご相談</h2>
-      <p>「うちの業種でも作れる？」「自動化できる？」など、お気軽にどうぞ。</p>
-      <div class="cta__tags">
-        <span>LP制作</span><span>HP制作</span><span>業務自動化</span><span>請求・在庫管理</span><span>経費精算</span><span>見積作成</span>
+      <p>「うちの業種でも作れる？」「この作業を自動化できる？」など、お気軽にどうぞ。</p>
+      <div class="contact__grid">
+        <div class="contact__channels">
+          <a href="mailto:hello@example.com" class="contact__link">
+            <strong>メール</strong>
+            <span>hello@example.com</span>
+          </a>
+          <div class="contact__link contact__link--static">
+            <strong>クラウドソーシング</strong>
+            <span>ココナラ / クラウドワークス対応可</span>
+          </div>
+        </div>
+        <form class="contact__form" id="contactForm">
+          <label>お名前<input type="text" name="name" required placeholder="山田 太郎"></label>
+          <label>メールアドレス<input type="email" name="email" required placeholder="taro@example.com"></label>
+          <label>ご相談内容<textarea name="message" rows="4" required placeholder="ご希望の内容・予算感・納期など"></textarea></label>
+          <button type="submit" class="btn btn--primary btn--full">送信内容をメールで開く</button>
+        </form>
       </div>
-      <p class="cta__note">※ お問い合わせ先は準備中です</p>
+      <div class="cta__tags">
+        <span>LP制作</span><span>HP制作</span><span>業務自動化</span><span>API連携</span><span>CRM</span><span>管理画面</span>
+      </div>
     </div>
   </section>
 
@@ -107,5 +204,16 @@
   </footer>
 
   <script src="js/hub.js"></script>
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      const subject = encodeURIComponent('【ポートフォリオ】お仕事のご相談');
+      const body = encodeURIComponent(
+        `お名前: ${fd.get('name')}\nメール: ${fd.get('email')}\n\nご相談内容:\n${fd.get('message')}`
+      );
+      window.location.href = `mailto:hello@example.com?subject=${subject}&body=${body}`;
+    });
+  </script>
 </body>
 </html>
