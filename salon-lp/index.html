@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="美容室 LUMIÈRE（ルミエール）— あなたらしさを引き出す、上質なヘアサロン。カット・カラー・トリートメント。">
+  <title>美容室 LUMIÈRE | あなたらしさを、光で彩る</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="#" class="header__logo">
+        <span class="header__logo-en">LUMIÈRE</span>
+        <span class="header__logo-ja">ルミエール</span>
+      </a>
+      <nav class="header__nav" id="nav">
+        <a href="#concept">コンセプト</a>
+        <a href="#menu">メニュー</a>
+        <a href="#stylist">スタイリスト</a>
+        <a href="#access">アクセス</a>
+        <a href="#reserve" class="header__cta">ご予約</a>
+      </nav>
+      <button class="header__burger" id="burger" aria-label="メニューを開く">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero__bg">
+      <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80" alt="サロン内観" loading="eager">
+    </div>
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <p class="hero__label">Hair Salon in Tokyo</p>
+      <h1 class="hero__title">
+        あなたらしさを、<br><em>光</em>で彩る。
+      </h1>
+      <p class="hero__desc">一人ひとりの個性に寄り添い、<br>日常に自信と輝きを届けるヘアサロン。</p>
+      <div class="hero__actions">
+        <a href="#reserve" class="btn btn--primary">オンライン予約</a>
+        <a href="#menu" class="btn btn--outline">メニューを見る</a>
+      </div>
+    </div>
+    <div class="hero__scroll">
+      <span>Scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Concept -->
+  <section class="section concept" id="concept">
+    <div class="container">
+      <div class="concept__grid">
+        <div class="concept__text reveal">
+          <p class="section-label">Concept</p>
+          <h2 class="section-title">髪から、<br>自分を好きになる。</h2>
+          <p class="concept__body">
+            LUMIÈREは「光（lumière）」の名のとおり、お客様一人ひとりの魅力を引き出すことを大切にしています。
+            流行を追うだけでなく、骨格・髪質・ライフスタイルに合わせた、あなただけのスタイルをご提案。
+            心地よい空間で、日常を少し特別な時間に変えていきます。
+          </p>
+        </div>
+        <div class="concept__images reveal">
+          <div class="concept__img concept__img--main">
+            <img src="assets/images/concept-main.jpg" alt="ヘアスタイリング" loading="lazy">
+          </div>
+          <div class="concept__img concept__img--sub">
+            <img src="assets/images/concept-sub.jpg" alt="カラーリング" loading="lazy">
+          </div>
+        </div>
+      </div>
+      <div class="concept__features reveal">
+        <div class="feature-card">
+          <span class="feature-card__num">01</span>
+          <h3>パーソナルカウンセリング</h3>
+          <p>初回はじっくりお話を伺い、理想のイメージを共有します。</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-card__num">02</span>
+          <h3>オーガニック製品</h3>
+          <p>髪と頭皮にやさしい、厳選されたケア製品を使用。</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-card__num">03</span>
+          <h3>プライベート空間</h3>
+          <p>半個室のセット席で、リラックスしてお過ごしいただけます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu -->
+  <section class="section menu" id="menu">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-label">Menu</p>
+        <h2 class="section-title">メニュー・料金</h2>
+        <p class="section-desc">税込表示。ロング料金は+550円〜1,100円。</p>
+      </div>
+      <div class="menu__grid reveal">
+        <div class="menu-card">
+          <div class="menu-card__icon">✂</div>
+          <h3>カット</h3>
+          <ul>
+            <li><span>カット</span><span>¥5,500</span></li>
+            <li><span>カット + シャンプー</span><span>¥6,600</span></li>
+            <li><span>前髪カット</span><span>¥1,100</span></li>
+          </ul>
+        </div>
+        <div class="menu-card menu-card--accent">
+          <div class="menu-card__icon">🎨</div>
+          <h3>カラー</h3>
+          <ul>
+            <li><span>フルカラー</span><span>¥8,800〜</span></li>
+            <li><span>リタッチカラー</span><span>¥7,700〜</span></li>
+            <li><span>ハイライト</span><span>¥11,000〜</span></li>
+          </ul>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card__icon">✨</div>
+          <h3>パーマ・ストレート</h3>
+          <ul>
+            <li><span>デジタルパーマ</span><span>¥13,200〜</span></li>
+            <li><span>縮毛矯正</span><span>¥16,500〜</span></li>
+            <li><span>パーマ + カット</span><span>¥17,600〜</span></li>
+          </ul>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card__icon">💆</div>
+          <h3>トリートメント</h3>
+          <ul>
+            <li><span>クイックトリートメント</span><span>¥3,300</span></li>
+            <li><span>プレミアムトリートメント</span><span>¥5,500</span></li>
+            <li><span>ヘッドスパ（20分）</span><span>¥4,400</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stylist -->
+  <section class="section stylist" id="stylist">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-label">Stylist</p>
+        <h2 class="section-title">スタイリスト紹介</h2>
+      </div>
+      <div class="stylist__grid reveal">
+        <div class="stylist-card">
+          <div class="stylist-card__photo">
+            <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=500&q=80" alt="田中 美咲" loading="lazy">
+          </div>
+          <div class="stylist-card__info">
+            <p class="stylist-card__role">Top Stylist</p>
+            <h3>田中 美咲 <small>Misaki Tanaka</small></h3>
+            <p>ナチュラルで扱いやすいスタイルが得意。骨格に合わせた小顔カットで人気。</p>
+          </div>
+        </div>
+        <div class="stylist-card">
+          <div class="stylist-card__photo">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80" alt="佐藤 健太" loading="lazy">
+          </div>
+          <div class="stylist-card__info">
+            <p class="stylist-card__role">Color Specialist</p>
+            <h3>佐藤 健太 <small>Kenta Sato</small></h3>
+            <p>透明感のあるカラーリングが得意。ダメージレスな施術で髪の健康を守ります。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="section gallery">
+    <div class="gallery__grid">
+      <div class="gallery__item reveal"><img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=600&q=80" alt="スタイル例1" loading="lazy"></div>
+      <div class="gallery__item reveal"><img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=600&q=80" alt="スタイル例2" loading="lazy"></div>
+      <div class="gallery__item reveal"><img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&q=80" alt="スタイル例3" loading="lazy"></div>
+      <div class="gallery__item reveal"><img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=600&q=80" alt="スタイル例4" loading="lazy"></div>
+    </div>
+  </section>
+
+  <!-- Reserve CTA -->
+  <section class="section reserve" id="reserve">
+    <div class="container">
+      <div class="reserve__box reveal">
+        <p class="section-label">Reservation</p>
+        <h2 class="section-title">ご予約・お問い合わせ</h2>
+        <p class="reserve__desc">24時間いつでもオンライン予約を承っております。<br>当日のご予約もお電話にてお問い合わせください。</p>
+        <div class="reserve__actions">
+          <a href="#" class="btn btn--primary btn--lg">オンライン予約する</a>
+          <a href="tel:03-1234-5678" class="btn btn--outline btn--lg">03-1234-5678</a>
+        </div>
+        <p class="reserve__note">※ このサイトはデモ用です。予約ボタンは実際には機能しません。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Access -->
+  <section class="section access" id="access">
+    <div class="container">
+      <div class="access__grid">
+        <div class="access__info reveal">
+          <p class="section-label">Access</p>
+          <h2 class="section-title">アクセス</h2>
+          <dl class="access__dl">
+            <dt>住所</dt>
+            <dd>〒150-0001<br>東京都渋谷区神宮前 3-25-18 LUMIÈRE Bldg. 2F</dd>
+            <dt>営業時間</dt>
+            <dd>火〜土 10:00 - 20:00<br>日・祝 10:00 - 19:00</dd>
+            <dt>定休日</dt>
+            <dd>月曜日（祝日の場合は翌火曜）</dd>
+            <dt>最寄り駅</dt>
+            <dd>東京メトロ 表参道駅 A2出口 徒歩5分</dd>
+          </dl>
+        </div>
+        <div class="access__map reveal">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.7477985333!2d139.709!3d35.669!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDQwJzA4LjQiTiAxMznCsDQyJzMyLjQiRQ!5e0!3m2!1sja!2sjp!4v1"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="サロンの地図">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">LUMIÈRE</span>
+        <p>あなたらしさを、光で彩る。</p>
+      </div>
+      <div class="footer__links">
+        <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://line.me" target="_blank" rel="noopener">LINE</a>
+      </div>
+      <p class="footer__copy">&copy; 2026 Salon LUMIÈRE. Demo site.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

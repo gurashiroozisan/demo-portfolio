@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問い合わせ | 株式会社ネクストブリッジ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header__inner">
+      <a href="index.html" class="header__logo">NEXT BRIDGE<small>株式会社ネクストブリッジ</small></a>
+      <nav class="header__nav" id="nav">
+        <a href="index.html">ホーム</a>
+        <a href="about.html">会社概要</a>
+        <a href="service.html">サービス</a>
+        <a href="works.html">実績</a>
+        <a href="contact.html" class="header__cta is-active">お問い合わせ</a>
+      </nav>
+      <button class="header__burger" id="burger" aria-label="メニュー"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="hero hero--sub">
+    <div class="hero__overlay" style="position:absolute;inset:0;background:var(--blue);"></div>
+    <div class="hero__content" style="text-align:center;width:100%;">
+      <h1>お問い合わせ</h1>
+      <p>Contact</p>
+    </div>
+  </section>
+
+  <section class="page-content">
+    <div class="container">
+      <div class="contact-grid">
+        <form>
+          <div class="form-group">
+            <label for="company">会社名</label>
+            <input type="text" id="company" placeholder="株式会社〇〇">
+          </div>
+          <div class="form-group">
+            <label for="name">お名前 <span style="color:#E53E3E;">*</span></label>
+            <input type="text" id="name" required placeholder="山田 太郎">
+          </div>
+          <div class="form-group">
+            <label for="email">メールアドレス <span style="color:#E53E3E;">*</span></label>
+            <input type="email" id="email" required placeholder="example@company.jp">
+          </div>
+          <div class="form-group">
+            <label for="type">お問い合わせ種別</label>
+            <select id="type">
+              <option>DXコンサルティングについて</option>
+              <option>システム開発について</option>
+              <option>業務自動化（RPA）について</option>
+              <option>その他</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">お問い合わせ内容 <span style="color:#E53E3E;">*</span></label>
+            <textarea id="message" required placeholder="ご相談内容をご記入ください"></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary" onclick="event.preventDefault();alert('デモサイトのため送信されません')">送信する</button>
+          <p style="font-size:.75rem;color:var(--text-light);margin-top:12px;">※ デモサイトのためフォームは機能しません</p>
+        </form>
+        <div>
+          <h2 style="margin-top:0;">お電話でのお問い合わせ</h2>
+          <p style="font-size:1.5rem;font-weight:700;color:var(--blue);margin-bottom:8px;">03-6000-1234</p>
+          <p style="font-size:.9rem;">平日 9:00 - 18:00</p>
+          <dl class="contact-info" style="margin-top:32px;">
+            <dt>所在地</dt>
+            <dd>〒105-0001<br>東京都港区虎ノ門 1-1-1<br>虎ノ門ビル 12F</dd>
+            <dt>メール</dt>
+            <dd>info@nextbridge-demo.jp</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer__copy">&copy; 2026 NEXT BRIDGE Inc. — Demo</p>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
