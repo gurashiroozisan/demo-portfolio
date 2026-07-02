@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="STUDIO K — ミニマルなデザインのオーバーサイズコート。限定生産。">
+  <title>OVERSIZED WOOL COAT | STUDIO K</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header__inner">
+      <a href="../index.html" class="header__back">← ポートフォリオ</a>
+      <a href="#" class="header__logo">STUDIO K</a>
+      <nav class="header__nav">
+        <a href="#product">商品</a>
+        <a href="#sizes">サイズ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="product" id="product">
+    <div class="product__gallery reveal">
+      <img src="assets/images/hero.jpg" alt="OVERSIZED WOOL COAT">
+    </div>
+    <div class="product__info reveal">
+      <p class="product__label">New Arrival</p>
+      <h1>OVERSIZED<br>WOOL COAT</h1>
+      <p class="product__price">¥48,000 <span>税込</span></p>
+      <p class="product__desc">上質なメリノウールを使用したオーバーサイズシルエット。シンプルなラペルデザインで、カジュアルからフォーマルまで幅広く着こなせます。</p>
+      <ul class="product__spec">
+        <li>素材：ウール 80% / ナイロン 20%</li>
+        <li>原産国：日本</li>
+        <li>カラー：チャコール</li>
+      </ul>
+
+      <div class="sizes" id="sizes">
+        <p class="sizes__label">サイズ</p>
+        <div class="sizes__options">
+          <button class="size-btn" data-size="S">S</button>
+          <button class="size-btn is-active" data-size="M">M</button>
+          <button class="size-btn" data-size="L">L</button>
+          <button class="size-btn" data-size="XL">XL</button>
+        </div>
+        <p class="sizes__guide"><a href="#">サイズガイド</a></p>
+      </div>
+
+      <button class="btn-cart" id="cartBtn">カートに追加</button>
+      <p class="cart-msg" id="cartMsg" hidden>カートに追加しました（デモ）</p>
+      <p class="note">※ デモサイトのため購入機能はありません</p>
+    </div>
+  </main>
+
+  <section class="details">
+    <div class="container reveal">
+      <h2>Details</h2>
+      <div class="details__grid">
+        <div><h3>シルエット</h3><p>肩落ちのあるゆったりシルエット。レイヤードスタイルにも最適です。</p></div>
+        <div><h3>ディテール</h3><p>サイドポケット・内ポケット付き。裏地は滑らかなキュプラを使用。</p></div>
+        <div><h3>お手入れ</h3><p>ドライクリーニング推奨。長期保管時は通気性の良いカバーをご使用ください。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>STUDIO K ｜ お問い合わせ: hello@studio-k.demo</p>
+      <p class="footer__copy">&copy; 2026 STUDIO K — Demo</p>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

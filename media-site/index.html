@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tech & Life — テクノロジーと暮らしの最新トピックをお届けするメディアサイト。">
+  <title>Tech &amp; Life | テクノロジーと暮らしのメディア</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="../index.html" class="header__back">← ポートフォリオ</a>
+      <a href="index.html" class="header__logo">Tech <em>&amp;</em> Life</a>
+      <nav class="header__nav" id="nav">
+        <a href="index.html">記事一覧</a>
+        <a href="#categories">カテゴリ</a>
+        <a href="#newsletter" class="header__cta">ニュースレター</a>
+      </nav>
+      <button class="header__burger" id="burger" aria-label="メニュー"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="hero hero--compact">
+    <div class="hero__bg"><img src="assets/images/hero.jpg" alt="テクノロジーと暮らし"></div>
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <p class="hero__label">Media</p>
+      <h1>テクノロジーと、<br>暮らしの交差点。</h1>
+      <p>ガジェット、働き方、ライフスタイルまで。<br>毎日のヒントになる記事をお届けします。</p>
+    </div>
+  </section>
+
+  <main class="main">
+    <div class="container">
+      <div class="section-head reveal" id="categories">
+        <p class="label">Latest Articles</p>
+        <h2>最新記事</h2>
+      </div>
+      <div class="articles reveal">
+        <article class="article-card article-card--featured">
+          <a href="article.html">
+            <p class="article-card__cat">テクノロジー</p>
+            <h3>2026年、AIアシスタントが変える働き方の5つのトレンド</h3>
+            <p>リモートワークとAIの融合が、チームコラボレーションをどう再定義するかを解説します。</p>
+            <time datetime="2026-06-28">2026.06.28</time>
+          </a>
+        </article>
+        <article class="article-card">
+          <a href="article.html">
+            <p class="article-card__cat">ライフスタイル</p>
+            <h3>ミニマルデスク環境で集中力を高める7つのコツ</h3>
+            <p>少ない道具で、快適なホームオフィスをつくる実践ガイド。</p>
+            <time datetime="2026-06-25">2026.06.25</time>
+          </a>
+        </article>
+        <article class="article-card">
+          <a href="article.html">
+            <p class="article-card__cat">ガジェット</p>
+            <h3>軽量ノートPC比較：クリエイター向け3モデルを検証</h3>
+            <p>性能・バッテリー・持ち運びやすさのバランスを徹底比較。</p>
+            <time datetime="2026-06-22">2026.06.22</time>
+          </a>
+        </article>
+        <article class="article-card">
+          <a href="article.html">
+            <p class="article-card__cat">キャリア</p>
+            <h3>副業を始める前に知っておきたい税金の基礎知識</h3>
+            <p>確定申告のタイミングから経費の考え方まで、初心者向けに整理。</p>
+            <time datetime="2026-06-18">2026.06.18</time>
+          </a>
+        </article>
+        <article class="article-card">
+          <a href="article.html">
+            <p class="article-card__cat">ウェルネス</p>
+            <h3>デスクワーカーのための5分ストレッチルーティン</h3>
+            <p>肩こり・眼精疲労を防ぐ、仕事中にできる簡単エクササイズ。</p>
+            <time datetime="2026-06-15">2026.06.15</time>
+          </a>
+        </article>
+        <article class="article-card">
+          <a href="article.html">
+            <p class="article-card__cat">テクノロジー</p>
+            <h3>スマートホーム入門：最初の一歩は照明から</h3>
+            <p>初期費用を抑えながら、暮らしを便利にするスマート照明の選び方。</p>
+            <time datetime="2026-06-12">2026.06.12</time>
+          </a>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <section class="newsletter" id="newsletter">
+    <div class="container reveal">
+      <h2>週刊ニュースレター</h2>
+      <p>毎週金曜、編集部おすすめの記事をお届けします。</p>
+      <form class="newsletter__form" action="#" onsubmit="return false;">
+        <input type="email" placeholder="メールアドレス" aria-label="メールアドレス">
+        <button type="submit" class="btn btn--primary">登録する</button>
+      </form>
+      <p class="note">※ デモサイトのため登録フォームは機能しません</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container"><p>&copy; 2026 Tech &amp; Life — Demo</p></div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

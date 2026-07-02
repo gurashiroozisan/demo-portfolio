@@ -28,7 +28,7 @@ font_tag = ImageFont.truetype("C:/Windows/Fonts/segoeui.ttf", 18)
 draw.text((80, 120), "PORTFOLIO HUB", fill="#6C8EFF", font=font_tag)
 draw.text((80, 160), "Demo Portfolio", fill="#F0F0F5", font=font_en_lg)
 draw.text((80, 310), "Web制作・業務自動化 ポートフォリオ", fill="#C8CCD8", font=font_jp)
-draw.text((80, 380), "Web制作 / 業務自動化 / LP / HP / ダッシュボード", fill="#8B90A0", font=font_jp_sm)
+draw.text((80, 380), "LP / HP / 業務自動化 / 予約UI / ダッシュボード", fill="#8B90A0", font=font_jp_sm)
 
 tags = ["LP", "HP", "Demo", "2026"]
 tx = 80

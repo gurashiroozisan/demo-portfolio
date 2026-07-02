@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>予約システムデモ | Reserve+</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="header"><a href="../index.html">← ポートフォリオ</a><span>Reserve+ Demo</span></header>
+  <main class="app">
+    <aside class="sidebar">
+      <h1>Reserve<span>+</span></h1>
+      <p>サロン・飲食店向け予約システム（デモ）</p>
+      <ol class="steps" id="steps">
+        <li class="active">日時を選択</li>
+        <li>メニュー</li>
+        <li>お客様情報</li>
+        <li>確認</li>
+      </ol>
+    </aside>
+    <section class="panel" id="panel">
+      <!-- Step 1 -->
+      <div class="step" data-step="1">
+        <h2>ご希望の日時</h2>
+        <div class="calendar" id="calendar"></div>
+        <div class="times" id="times"></div>
+      </div>
+      <!-- Step 2 -->
+      <div class="step hidden" data-step="2">
+        <h2>メニューを選択</h2>
+        <div class="menus" id="menus"></div>
+      </div>
+      <!-- Step 3 -->
+      <div class="step hidden" data-step="3">
+        <h2>お客様情報</h2>
+        <form class="form" id="form">
+          <label>お名前<input required placeholder="山田 花子"></label>
+          <label>電話番号<input required placeholder="090-1234-5678"></label>
+          <label>メール<input type="email" placeholder="example@email.com"></label>
+        </form>
+      </div>
+      <!-- Step 4 -->
+      <div class="step hidden" data-step="4">
+        <h2>予約内容の確認</h2>
+        <dl class="confirm" id="confirm"></dl>
+        <p class="note">※ デモのため実際には予約されません</p>
+      </div>
+      <div class="nav">
+        <button class="btn btn--ghost" id="prev" disabled>戻る</button>
+        <button class="btn btn--primary" id="next">次へ</button>
+      </div>
+    </section>
+  </main>
+  <script src="js/main.js"></script>
+</body>
+</html>
