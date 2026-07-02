@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ExpenseFlow 経費精算 — 申請・承認ワークフローをダッシュボードで一元管理。カテゴリ別集計と月別推移を可視化。">
+  <title>ExpenseFlow 経費精算 | 業務自動化デモ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header__inner">
+      <a href="../index.html" class="header__back">← ポートフォリオ</a>
+      <div class="header__brand">
+        <span class="header__logo">ExpenseFlow</span>
+        <span class="header__sub">経費精算ダッシュボード</span>
+      </div>
+      <span class="header__demo">Demo</span>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero__grid">
+      <div class="hero__text">
+        <p class="label">Business Automation</p>
+        <h1>経費精算の承認、<br><em>ワンクリック</em>で完了。</h1>
+        <p>領収書アップロードから承認・却下までを一元管理。カテゴリ別集計と月別推移をリアルタイムで可視化します。</p>
+        <div class="hero__stats">
+          <div><strong>5件</strong><span>申請中</span></div>
+          <div><strong>¥186,400</strong><span>今月承認額</span></div>
+          <div><strong>2.3日</strong><span>平均処理</span></div>
+        </div>
+      </div>
+      <div class="hero__compare">
+        <div class="compare-card compare-card--before">
+          <p class="compare-card__tag">Before</p>
+          <div class="fake-excel">
+            <div class="fake-excel__bar"></div>
+            <table>
+              <tr><th>日付</th><th>申請者</th><th>金額</th><th>状態</th></tr>
+              <tr><td>3/1</td><td>田中</td><td>¥3,200</td><td>未処理</td></tr>
+              <tr><td>3/2</td><td>佐藤</td><td>¥12,800</td><td>承認待ち</td></tr>
+              <tr class="err"><td>3/3</td><td>鈴木</td><td>¥980</td><td>重複?</td></tr>
+              <tr><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+            </table>
+          </div>
+          <p class="compare-card__note">紙・メールでバラバラ、手作業で転記</p>
+        </div>
+        <div class="compare-arrow">→</div>
+        <div class="compare-card compare-card--after">
+          <p class="compare-card__tag">After</p>
+          <div class="mini-dash">
+            <div class="mini-dash__kpis">
+              <div><span>申請中</span><strong>5</strong></div>
+              <div><span>承認額</span><strong>¥186k</strong></div>
+            </div>
+            <div class="mini-dash__chart"></div>
+          </div>
+          <p class="compare-card__note">取込 → 集計 → 承認が一瞬で完了</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section demo" id="demo">
+    <div class="container">
+      <div class="section-head">
+        <p class="label">Live Demo</p>
+        <h2>経費精算デモを試す</h2>
+        <p>デモデータで申請一覧を表示し、承認・却下を試してください。</p>
+      </div>
+
+      <div class="dashboard" id="dashboard">
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <span class="kpi-card__label">申請中</span>
+            <strong class="kpi-card__value" id="kpiPending">0</strong>
+            <span class="kpi-card__sub">件</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-card__label">今月承認額</span>
+            <strong class="kpi-card__value" id="kpiApproved">¥0</strong>
+            <span class="kpi-card__change" id="kpiApprovedChange"></span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-card__label">却下</span>
+            <strong class="kpi-card__value" id="kpiRejected">0</strong>
+            <span class="kpi-card__sub">件</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-card__label">平均処理日数</span>
+            <strong class="kpi-card__value" id="kpiAvgDays">0</strong>
+            <span class="kpi-card__sub">日</span>
+          </div>
+        </div>
+
+        <div class="chart-grid">
+          <div class="chart-card">
+            <h3>カテゴリ別経費</h3>
+            <canvas id="categoryChart"></canvas>
+          </div>
+          <div class="chart-card">
+            <h3>月別推移</h3>
+            <canvas id="monthlyChart"></canvas>
+          </div>
+        </div>
+
+        <div class="table-card">
+          <div class="table-card__head">
+            <h3>経費申請一覧</h3>
+            <button class="btn btn--sm" id="exportBtn">CSVエクスポート（デモ）</button>
+          </div>
+          <div class="table-wrap">
+            <table id="dataTable">
+              <thead>
+                <tr>
+                  <th>申請日</th>
+                  <th>申請者</th>
+                  <th>カテゴリ</th>
+                  <th>内容</th>
+                  <th>金額</th>
+                  <th>状態</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <div class="section-head">
+        <p class="label">Features</p>
+        <h2>できること</h2>
+      </div>
+      <div class="features">
+        <div class="feature">
+          <span class="feature__icon">📱</span>
+          <h3>スマホから申請</h3>
+          <p>領収書を撮影してその場で申請。交通費・交際費・備品購入などに対応。</p>
+        </div>
+        <div class="feature">
+          <span class="feature__icon">✅</span>
+          <h3>承認ワークフロー</h3>
+          <p>上長承認・経理確認を段階的に設定。差し戻し・却下もワンクリック。</p>
+        </div>
+        <div class="feature">
+          <span class="feature__icon">📊</span>
+          <h3>経費分析</h3>
+          <p>カテゴリ別・部署別・月別の集計グラフで支出傾向を把握。</p>
+        </div>
+        <div class="feature">
+          <span class="feature__icon">🔗</span>
+          <h3>会計ソフト連携</h3>
+          <p>freee・MFクラウドなどへの仕訳データ出力に対応可能。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="label">Use Cases</p>
+        <h2>こんな業務に</h2>
+      </div>
+      <ul class="usecases">
+        <li>紙の領収書を経理に手渡ししている</li>
+        <li>メール添付の経費申請が埋もれてしまう</li>
+        <li>月末にExcelで集計表を手作業で作成している</li>
+        <li>承認状況の確認に時間がかかっている</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <h2>御社の経費精算フローに合わせてカスタマイズできます</h2>
+      <p>承認ルート・カテゴリ設定・会計連携など、要件に応じて設計・開発します。</p>
+      <p class="note">※ このページはデモです。実際のシステムは要件に応じて設計・開発します。</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container"><p>&copy; 2026 ExpenseFlow Demo — 業務自動化ポートフォリオ</p></div>
+  </footer>
+
+</body>
+</html>

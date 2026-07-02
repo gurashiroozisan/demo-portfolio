@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="請求書・入金管理ダッシュボード — 請求・入金状況を一元管理。未入金・期限超過を自動アラート。">
+  <title>請求書・入金管理 | BillTrack デモ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header__inner">
+      <a href="../index.html" class="header__back">← ポートフォリオ</a>
+      <div class="header__brand">
+        <span class="header__logo">BillTrack</span>
+        <span class="header__sub">請求書・入金管理</span>
+      </div>
+      <span class="header__demo">Demo</span>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero__grid">
+      <div class="hero__text">
+        <p class="label">Business Automation</p>
+        <h1>請求・入金の照合、<br><em>ボタン1つ</em>で完了。</h1>
+        <p>請求書データを取り込み、入金状況・期限超過を自動集計。未入金の取引先をすぐに把握し、回収漏れを防ぎます。</p>
+        <div class="hero__stats">
+          <div><strong>2h → 10sec</strong><span>照合時間</span></div>
+          <div><strong>5社</strong><span>取引先管理</span></div>
+          <div><strong>即時</strong><span>アラート表示</span></div>
+        </div>
+      </div>
+      <div class="hero__compare">
+        <div class="compare-card compare-card--before">
+          <p class="compare-card__tag">Before</p>
+          <div class="fake-excel">
+            <div class="fake-excel__bar"></div>
+            <table>
+              <tr><th>請求No</th><th>取引先</th><th>金額</th><th>入金</th></tr>
+              <tr><td>INV-001</td><td>ABC商事</td><td>330,000</td><td>?</td></tr>
+              <tr><td>INV-002</td><td>XYZ工業</td><td>550,000</td><td>済?</td></tr>
+              <tr class="err"><td>INV-003</td><td>DEF物産</td><td>220,000</td><td>期限超過</td></tr>
+              <tr><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+            </table>
+          </div>
+          <p class="compare-card__note">Excelで手作業照合、期限超過の見落とし</p>
+        </div>
+        <div class="compare-arrow">→</div>
+        <div class="compare-card compare-card--after">
+          <p class="compare-card__tag">After</p>
+          <div class="mini-dash">
+            <div class="mini-dash__kpis">
+              <div><span>請求総額</span><strong>¥4.2M</strong></div>
+              <div><span>未入金</span><strong>¥680K</strong></div>
+            </div>
+            <div class="mini-dash__chart"></div>
+          </div>
+          <p class="compare-card__note">取込 → 照合 → ダッシュボードが一瞬で完了</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section demo" id="demo">
+    <div class="container">
+      <div class="section-head">
+        <p class="label">Live Demo</p>
+        <h2>実際に動くデモを試す</h2>
+        <p>デモデータで集計を実行するか、CSVファイルをアップロードしてください。</p>
+      </div>
+
+      <div class="demo__toolbar">
+        <button class="btn btn--primary" id="runDemo">デモデータで集計</button>
+        <label class="btn btn--outline">
+          CSVをアップロード
+          <input type="file" id="csvInput" accept=".csv" hidden>
+        </label>
+        <select id="monthFilter" class="select" disabled>
+          <option value="all">全期間</option>
+        </select>
+      </div>
+
+      <div class="demo__loading" id="loading" hidden>
+        <div class="spinner"></div>
+        <p>請求データを集計中…</p>
+      </div>
+
+      <div class="dashboard" id="dashboard" hidden>
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <span class="kpi-card__label">請求総額</span>
+            <strong class="kpi-card__value" id="kpiTotal">¥0</strong>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-card__label">入金済み</span>
+            <strong class="kpi-card__value kpi-card__value--ok" id="kpiPaid">¥0</strong>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-card__label">未入金</span>
+            <strong class="kpi-card__value kpi-card__value--warn" id="kpiPending">¥0</strong>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-card__label">期限超過</span>
+            <strong class="kpi-card__value kpi-card__value--danger" id="kpiOverdue">¥0</strong>
+          </div>
+        </div>
+
+        <div class="chart-grid">
+          <div class="chart-card">
+            <h3>月別請求額</h3>
+            <canvas id="monthlyChart"></canvas>
+          </div>
+          <div class="chart-card">
+            <h3>入金ステータス</h3>
+            <canvas id="statusChart"></canvas>
+          </div>
+          <div class="chart-card chart-card--wide">
+            <h3>取引先別請求額</h3>
+            <canvas id="clientChart"></canvas>
+          </div>
+        </div>
+
+        <div class="table-card">
+          <div class="table-card__head">
+            <h3>請求明細</h3>
+            <button class="btn btn--sm" id="exportBtn">CSVエクスポート（デモ）</button>
+          </div>
+          <div class="table-wrap">
+            <table id="dataTable">
+              <thead>
+                <tr><th>請求No</th><th>取引先</th><th>請求日</th><th>支払期限</th><th>金額</th><th>ステータス</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <div class="section-head">
+        <p class="label">Features</p>
+        <h2>できること</h2>
+      </div>
+      <div class="features">
+        <div class="feature">
+          <span class="feature__icon">📂</span>
+          <h3>請求データの一括取込</h3>
+          <p>会計ソフト・ExcelからのCSVをまとめて読み込み、形式を自動統一。</p>
+        </div>
+        <div class="feature">
+          <span class="feature__icon">💰</span>
+          <h3>入金照合の自動化</h3>
+          <p>入金済・未入金・期限超過をワンクリックで集計・可視化。</p>
+        </div>
+        <div class="feature">
+          <span class="feature__icon">🔔</span>
+          <h3>期限超過アラート</h3>
+          <p>支払期限を過ぎた請求を自動検出。回収漏れを防止。</p>
+        </div>
+        <div class="feature">
+          <span class="feature__icon">🔗</span>
+          <h3>既存ツール連携</h3>
+          <p>freee、マネーフォワード、Slack通知との連携も対応可能。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="label">Use Cases</p>
+        <h2>こんな業務に</h2>
+      </div>
+      <ul class="usecases">
+        <li>月末に請求書と入金をExcelで手作業照合している</li>
+        <li>期限超過の請求を見落として回収が遅れている</li>
+        <li>取引先ごとの未入金額を把握するのに時間がかかる</li>
+        <li>経理・営業で請求状況の共有がうまくいかない</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <h2>御社の請求フローに合わせてカスタマイズできます</h2>
+      <p>請求管理以外にも、売上集計・勤怠集計・在庫管理など幅広く対応。</p>
+      <p class="note">※ このページはデモです。実際のシステムは要件に応じて設計・開発します。</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container"><p>&copy; 2026 BillTrack Demo — 業務自動化ポートフォリオ</p></div>
+  </footer>
+
+</body>
+</html>

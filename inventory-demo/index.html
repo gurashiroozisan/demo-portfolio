@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="在庫管理ダッシュボード — 在庫不足・欠品を自動検知。カテゴリ別在庫と評価額をリアルタイム可視化。">
+  <title>在庫管理 | StockAlert デモ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header__inner">
+      <a href="../index.html" class="header__back">← ポートフォリオ</a>
+      <div class="header__brand">
+        <span class="header__logo">StockAlert</span>
+        <span class="header__sub">在庫管理</span>
+      </div>
+      <span class="header__demo">Demo</span>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero__grid">
+      <div class="hero__text">
+        <p class="label">Business Automation</p>
+        <h1>在庫チェック、<br><em>ボタン1つ</em>で完了。</h1>
+        <p>商品マスタと在庫数を取り込み、在庫不足・欠品を自動検知。発注漏れを防ぎ、在庫評価額もリアルタイムで把握できます。</p>
+        <div class="hero__stats">
+          <div><strong>1h → 5sec</strong><span>棚卸時間</span></div>
+          <div><strong>20品</strong><span>一括管理</span></div>
+          <div><strong>即時</strong><span>アラート表示</span></div>
+        </div>
+      </div>
+      <div class="hero__compare">
+        <div class="compare-card compare-card--before">
+          <p class="compare-card__tag">Before</p>
+          <div class="fake-excel">
+            <div class="fake-excel__bar"></div>
+            <table>
+              <tr><th>商品</th><th>在庫</th><th>最低</th><th>状態</th></tr>
+              <tr><td>ボルトM6</td><td>120</td><td>50</td><td>OK</td></tr>
+              <tr class="err"><td>ナットM6</td><td>8</td><td>30</td><td>不足</td></tr>
+              <tr class="err"><td>ワッシャー</td><td>0</td><td>20</td><td>欠品</td></tr>
+              <tr><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+            </table>
+          </div>
+          <p class="compare-card__note">Excelで手作業チェック、発注漏れが発生</p>
+        </div>
+        <div class="compare-arrow">→</div>
+        <div class="compare-card compare-card--after">
+          <p class="compare-card__tag">After</p>
+          <div class="mini-dash">
+            <div class="mini-dash__kpis">
+              <div><span>在庫不足</span><strong>5品</strong></div>
+              <div><span>評価額</span><strong>¥1.8M</strong></div>
+            </div>
+            <div class="mini-dash__chart"></div>
+          </div>
+          <p class="compare-card__note">取込 → 分析 → アラートが一瞬で完了</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section demo" id="demo">
+    <div class="container">
+      <div class="section-head">
+        <p class="label">Live Demo</p>
+        <h2>実際に動くデモを試す</h2>
+        <p>デモデータで集計を実行するか、CSVファイルをアップロードしてください。</p>
+      </div>
+
+      <div class="demo__toolbar">
+        <button class="btn btn--primary" id="runDemo">デモデータで集計</button>
+        <label class="btn btn--outline">
+          CSVをアップロード
+          <input type="file" id="csvInput" accept=".csv" hidden>
+        </label>
+        <select id="stockFilter" class="select" disabled>
+          <option value="all">すべて</option>
+          <option value="reorder">要発注</option>
+        </select>
+      </div>
+
+      <div class="demo__loading" id="loading" hidden>
+        <div class="spinner"></div>
+        <p>在庫データを集計中…</p>
+      </div>
+
+      <div class="dashboard" id="dashboard" hidden>
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <span class="kpi-card__label">商品数</span>
+            <strong class="kpi-card__value" id="kpiProducts">0</strong>
+            <span class="kpi-card__sub">品目</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-card__label">在庫不足</span>
+            <strong class="kpi-card__value kpi-card__value--warn" id="kpiLow">0</strong>
+            <span class="kpi-card__sub">品目</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-card__label">欠品</span>
+            <strong class="kpi-card__value kpi-card__value--danger" id="kpiOut">0</strong>
+            <span class="kpi-card__sub">品目</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-card__label">在庫評価額</span>
+            <strong class="kpi-card__value" id="kpiValue">¥0</strong>
+          </div>
+        </div>
+
+        <div class="chart-grid">
+          <div class="chart-card">
+            <h3>カテゴリ別在庫</h3>
+            <canvas id="categoryChart"></canvas>
+          </div>
+          <div class="chart-card">
+            <h3>在庫回転</h3>
+            <canvas id="turnoverChart"></canvas>
+          </div>
+        </div>
+
+        <div class="table-card">
+          <div class="table-card__head">
+            <h3>在庫明細</h3>
+            <button class="btn btn--sm" id="exportBtn">CSVエクスポート（デモ）</button>
+          </div>
+          <div class="table-wrap">
+            <table id="dataTable">
+              <thead>
+                <tr><th>商品コード</th><th>商品名</th><th>カテゴリ</th><th>在庫数</th><th>最低在庫</th><th>単価</th><th>評価額</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <div class="section-head">
+        <p class="label">Features</p>
+        <h2>できること</h2>
+      </div>
+      <div class="features">
+        <div class="feature">
+          <span class="feature__icon">📦</span>
+          <h3>在庫データの一括取込</h3>
+          <p>倉庫管理システム・ExcelからのCSVをまとめて読み込み、形式を自動統一。</p>
+        </div>
+        <div class="feature">
+          <span class="feature__icon">⚠️</span>
+          <h3>在庫不足の自動検知</h3>
+          <p>最低在庫を下回る商品・欠品をワンクリックで検出・ハイライト表示。</p>
+        </div>
+        <div class="feature">
+          <span class="feature__icon">📊</span>
+          <h3>在庫分析ダッシュボード</h3>
+          <p>カテゴリ別在庫・在庫回転率・評価額をグラフで可視化。</p>
+        </div>
+        <div class="feature">
+          <span class="feature__icon">🔗</span>
+          <h3>既存ツール連携</h3>
+          <p>発注システム、Slack通知、会計ソフトとの連携も対応可能。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="label">Use Cases</p>
+        <h2>こんな業務に</h2>
+      </div>
+      <ul class="usecases">
+        <li>在庫チェックをExcelで手作業で行っている</li>
+        <li>在庫不足に気づかず発注が遅れて納期に影響している</li>
+        <li>カテゴリごとの在庫状況を把握するのに時間がかかる</li>
+        <li>棚卸のたびに評価額の計算に半日かかっている</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <h2>御社の在庫フローに合わせてカスタマイズできます</h2>
+      <p>在庫管理以外にも、請求書処理・売上集計・勤怠集計など幅広く対応。</p>
+      <p class="note">※ このページはデモです。実際のシステムは要件に応じて設計・開発します。</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container"><p>&copy; 2026 StockAlert Demo — 業務自動化ポートフォリオ</p></div>
+  </footer>
+
+</body>
+</html>

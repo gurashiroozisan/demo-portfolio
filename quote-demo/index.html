@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="QuoteQuick 見積書作成 — 品目を入力するだけで見積書をリアルタイムプレビュー。PDF出力にも対応。">
+  <title>QuoteQuick 見積書作成 | 業務自動化デモ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header__inner">
+      <a href="../index.html" class="header__back">← ポートフォリオ</a>
+      <div class="header__brand">
+        <span class="header__logo">QuoteQuick</span>
+        <span class="header__sub">見積書作成ツール</span>
+      </div>
+      <span class="header__demo">Demo</span>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero__grid">
+      <div class="hero__text">
+        <p class="label">Business Tool</p>
+        <h1>見積書作成、<br><em>入力するだけ</em>で完成。</h1>
+        <p>品目・数量・単価を入力すると、見積書プレビューがリアルタイムで更新。PDF出力もワンクリック。</p>
+        <div class="hero__stats">
+          <div><strong>5分 → 30sec</strong><span>作成時間</span></div>
+          <div><strong>自動計算</strong><span>小計・税・合計</span></div>
+          <div><strong>即時</strong><span>プレビュー更新</span></div>
+        </div>
+      </div>
+      <div class="hero__compare">
+        <div class="compare-card compare-card--before">
+          <p class="compare-card__tag">Before</p>
+          <div class="fake-doc">
+            <p class="fake-doc__title">見積書.docx</p>
+            <p class="fake-doc__line">品名: _________</p>
+            <p class="fake-doc__line">数量: ___  単価: ___</p>
+            <p class="fake-doc__line fake-doc__line--err">合計: 手計算ミス?</p>
+            <p class="fake-doc__line">…</p>
+          </div>
+          <p class="compare-card__note">Word/Excelで毎回作り直し</p>
+        </div>
+        <div class="compare-arrow">→</div>
+        <div class="compare-card compare-card--after">
+          <p class="compare-card__tag">After</p>
+          <div class="mini-preview">
+            <p class="mini-preview__head">御見積書</p>
+            <div class="mini-preview__row"><span>Webサイト制作</span><span>¥500,000</span></div>
+            <div class="mini-preview__row"><span>保守サポート</span><span>¥50,000</span></div>
+            <div class="mini-preview__total"><span>合計</span><span>¥605,000</span></div>
+          </div>
+          <p class="compare-card__note">入力 → プレビュー → PDFが一瞬</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section demo" id="demo">
+    <div class="container">
+      <div class="section-head">
+        <p class="label">Live Demo</p>
+        <h2>見積書を作成してみる</h2>
+        <p>クライアント名と品目を入力すると、右側のプレビューがリアルタイムで更新されます。</p>
+      </div>
+
+      <div class="quote-layout">
+        <div class="quote-form">
+          <div class="form-group">
+            <label for="clientName">クライアント名</label>
+            <input type="text" id="clientName" placeholder="例: 株式会社サンプル" value="株式会社テックソリューション">
+          </div>
+          <div class="form-group">
+            <label for="quoteDate">見積日</label>
+            <input type="date" id="quoteDate">
+          </div>
+          <div class="form-group">
+            <label for="quoteNo">見積番号</label>
+            <input type="text" id="quoteNo" value="Q-2026-0630-001" readonly>
+          </div>
+
+          <div class="line-items">
+            <div class="line-items__head">
+              <h3>品目</h3>
+              <button class="btn btn--sm" id="addLine">+ 行を追加</button>
+            </div>
+            <div class="line-items__table-wrap">
+              <table class="line-items__table">
+                <thead>
+                  <tr>
+                    <th>品名</th>
+                    <th>数量</th>
+                    <th>単価</th>
+                    <th>金額</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="lineItemsBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn--primary" id="printBtn">PDF出力（デモ）</button>
+            <button class="btn btn--outline" id="resetBtn">リセット</button>
+          </div>
+        </div>
+
+        <div class="quote-preview-wrap">
+          <p class="quote-preview__label">プレビュー</p>
+          <div class="quote-preview" id="quotePreview">
+            <div class="quote-doc">
+              <div class="quote-doc__header">
+                <h2 class="quote-doc__title">御 見 積 書</h2>
+                <div class="quote-doc__meta">
+                  <p>見積番号: <span id="previewNo">Q-2026-0630-001</span></p>
+                  <p>見積日: <span id="previewDate">2026年6月30日</span></p>
+                </div>
+              </div>
+              <div class="quote-doc__client">
+                <p class="quote-doc__client-name" id="previewClient">株式会社テックソリューション 御中</p>
+              </div>
+              <p class="quote-doc__intro">下記の通りお見積り申し上げます。</p>
+              <table class="quote-doc__table">
+                <thead>
+                  <tr>
+                    <th>品名</th>
+                    <th>数量</th>
+                    <th>単価</th>
+                    <th>金額</th>
+                  </tr>
+                </thead>
+                <tbody id="previewItems"></tbody>
+              </table>
+              <div class="quote-doc__totals">
+                <div class="quote-doc__total-row"><span>小計</span><span id="previewSubtotal">¥0</span></div>
+                <div class="quote-doc__total-row"><span>消費税（10%）</span><span id="previewTax">¥0</span></div>
+                <div class="quote-doc__total-row quote-doc__total-row--grand"><span>合計</span><span id="previewTotal">¥0</span></div>
+              </div>
+              <div class="quote-doc__footer">
+                <p>株式会社 QuoteQuick</p>
+                <p>東京都渋谷区〇〇 1-2-3 / TEL: 03-1234-5678</p>
+                <p>有効期限: 発行日より30日間</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <div class="section-head">
+        <p class="label">Features</p>
+        <h2>できること</h2>
+      </div>
+      <div class="features">
+        <div class="feature">
+          <span class="feature__icon">⚡</span>
+          <h3>リアルタイムプレビュー</h3>
+          <p>入力と同時に見積書が更新。完成イメージをその場で確認できます。</p>
+        </div>
+        <div class="feature">
+          <span class="feature__icon">🧮</span>
+          <h3>自動計算</h3>
+          <p>小計・消費税・合計を自動算出。計算ミスを防ぎます。</p>
+        </div>
+        <div class="feature">
+          <span class="feature__icon">📄</span>
+          <h3>PDF出力</h3>
+          <p>ワンクリックでPDF出力。メール添付や印刷にも対応。</p>
+        </div>
+        <div class="feature">
+          <span class="feature__icon">📋</span>
+          <h3>テンプレート管理</h3>
+          <p>よく使う品目をテンプレート登録。見積作成をさらに高速化。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="label">Use Cases</p>
+        <h2>こんな業務に</h2>
+      </div>
+      <ul class="usecases">
+        <li>Word/Excelで見積書を毎回手作業で作成している</li>
+        <li>品目追加のたびに合計を再計算している</li>
+        <li>見積書のフォーマットが担当者ごとにバラバラ</li>
+        <li>見積→請求書への転記に手間がかかっている</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <h2>御社の見積フローに合わせてカスタマイズできます</h2>
+      <p>テンプレート・承認フロー・請求書連携など、要件に応じて設計・開発します。</p>
+      <p class="note">※ このページはデモです。実際のシステムは要件に応じて設計・開発します。</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container"><p>&copy; 2026 QuoteQuick Demo — 業務自動化ポートフォリオ</p></div>
+  </footer>
+
+</body>
+</html>
