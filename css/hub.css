@@ -270,6 +270,20 @@ a.contact__link:hover { border-color: var(--accent); }
 }
 .contact__form input:focus,
 .contact__form textarea:focus { outline: none; border-color: var(--accent); }
+.contact__honeypot {
+  position: absolute; left: -9999px; width: 1px; height: 1px;
+  opacity: 0; pointer-events: none;
+}
+.form-status {
+  font-size: 0.82rem; padding: 10px 14px; border-radius: 8px; margin: 0;
+}
+.form-status--success {
+  background: var(--green-soft); border: 1px solid rgba(34, 197, 94, 0.3); color: var(--green);
+}
+.form-status--error {
+  background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5;
+}
+.contact__form .btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
 /* Empty */
 .empty { text-align: center; padding: 60px 20px; color: var(--text-muted); }
