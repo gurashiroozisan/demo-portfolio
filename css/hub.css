@@ -38,7 +38,7 @@ a { color: inherit; text-decoration: none; }
   font-size: 1.05rem; font-weight: 700;
 }
 .header__logo-img {
-  width: 28px; height: 28px; object-fit: contain; border-radius: 6px;
+  width: 34px; height: 34px; object-fit: contain; border-radius: 6px;
 }
 .header__nav { display: flex; gap: 28px; }
 .header__nav a { font-size: 0.85rem; color: var(--text-muted); transition: color 0.2s; }
@@ -55,6 +55,12 @@ a { color: inherit; text-decoration: none; }
 .hero__label {
   font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
   color: var(--accent); margin-bottom: 16px;
+}
+.hero__logo-mark {
+  width: min(280px, 62vw);
+  border-radius: 12px;
+  margin-bottom: 14px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
 }
 .hero h1 {
   font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700;
@@ -210,6 +216,18 @@ a { color: inherit; text-decoration: none; }
 .profile__avatar img {
   width: 100%; height: 100%; object-fit: cover;
 }
+.profile__avatar--logo {
+  width: 180px;
+  height: 180px;
+  border-radius: 20px;
+  background: transparent;
+  border: none;
+}
+.profile__avatar--logo img {
+  object-fit: contain;
+  border-radius: 20px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+}
 .profile__role { font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; }
 .profile__body p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px; line-height: 1.75; }
 .profile__body strong { color: var(--text); }
@@ -332,6 +350,7 @@ a.contact__link:hover { border-color: var(--accent); }
 @media (max-width: 768px) {
   .header__nav { display: none; }
   .hero__inner { grid-template-columns: 1fr; }
+  .hero__logo-mark { width: min(220px, 60vw); }
   .hero__stats { grid-template-columns: repeat(4, 1fr); }
   .stat { padding: 12px 8px; }
   .stat strong { font-size: 1.3rem; }
@@ -341,6 +360,8 @@ a.contact__link:hover { border-color: var(--accent); }
   .grid { grid-template-columns: 1fr; }
   .about__grid { grid-template-columns: 1fr; }
   .profile__grid { grid-template-columns: 1fr; }
+  .profile__card { flex-direction: column; align-items: flex-start; }
+  .profile__avatar--logo { width: 130px; height: 130px; }
   .pricing__grid { grid-template-columns: 1fr; }
   .contact__grid { grid-template-columns: 1fr; }
 }
