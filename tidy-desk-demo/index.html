@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TidyDesk — ダウンロードフォルダを自動整理するデスクトップアプリ（デモ）。">
+  <title>TidyDesk | ダウンロード整理アプリ Demo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a href="../index.html" class="back-link">← ポートフォリオ</a>
+
+  <section class="landing">
+    <p class="label">Desktop App Demo</p>
+    <h1>ダウンロードフォルダ、<br><em>まとめてスッキリ。</em></h1>
+    <p>散らかったファイルを種類別フォルダに自動仕分け。画像・書類・動画を一瞬で整理。</p>
+  </section>
+
+  <div class="desktop-wrap">
+    <div class="window" id="app">
+      <div class="titlebar">
+        <div class="titlebar__dots"><span></span><span></span><span></span></div>
+        <span class="titlebar__title">TidyDesk — ダウンロード</span>
+        <span class="titlebar__demo">Demo</span>
+      </div>
+      <div class="window__body">
+        <aside class="sidebar">
+          <p class="sidebar__label">フォルダ</p>
+          <ul>
+            <li class="active">📁 ダウンロード</li>
+            <li id="folderImages" class="hidden">🖼 画像</li>
+            <li id="folderDocs" class="hidden">📄 書類</li>
+            <li id="folderVideos" class="hidden">🎬 動画</li>
+            <li id="folderArchives" class="hidden">📦 アーカイブ</li>
+            <li id="folderOther" class="hidden">📎 その他</li>
+          </ul>
+          <button class="btn-organize" id="organizeBtn">✨ 自動整理する</button>
+          <p class="sidebar__note">※ ブラウザ上のデモです</p>
+        </aside>
+        <main class="main">
+          <div class="toolbar">
+            <span id="pathLabel">ダウンロード（未整理 24件）</span>
+            <button class="btn-reset hidden" id="resetBtn">リセット</button>
+          </div>
+          <div class="file-grid" id="fileGrid"></div>
+          <div class="result hidden" id="result">
+            <h3>整理完了！</h3>
+            <p id="resultText"></p>
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <section class="features">
+    <div class="feature"><strong>自動分類</strong><span>拡張子から画像・PDF・動画などに振り分け</span></div>
+    <div class="feature"><strong>カスタムルール</strong><span>社内ルールに合わせたフォルダ設計も可能</span></div>
+    <div class="feature"><strong>安全設計</strong><span>削除せず移動のみ。元に戻せるログ付き</span></div>
+  </section>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

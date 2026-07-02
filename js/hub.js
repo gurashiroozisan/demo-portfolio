@@ -9,6 +9,7 @@ const PORTFOLIO = [
   { type: 'tool', tags: ['自動化', '在庫'], title: 'StockAlert 在庫管理', category: '業務自動化', desc: '在庫不足・欠品をアラート。カテゴリ別の在庫状況をダッシュボードで把握。', url: 'inventory-demo/index.html', thumb: 'inventory-demo/assets/images/preview.png', badge: 'Tool', featured: true },
   { type: 'tool', tags: ['自動化', '経費'], title: 'ExpenseFlow 経費精算', category: '業務自動化', desc: '経費申請の承認ワークフロー。カテゴリ別集計・月次推移グラフ。', url: 'expense-demo/index.html', thumb: 'expense-demo/assets/images/preview.png', badge: 'Tool', featured: true },
   { type: 'tool', tags: ['見積書', 'UI'], title: 'QuoteQuick 見積作成', category: '業務ツール', desc: '品目を入力するだけで見積書を自動生成。プレビュー・PDF出力（デモ）。', url: 'quote-demo/index.html', thumb: 'quote-demo/assets/images/preview.png', badge: 'Tool', featured: true },
+  { type: 'tool', tags: ['デスクトップ', '整理', 'ファイル'], title: 'TidyDesk フォルダ整理', category: 'デスクトップアプリ', desc: 'ダウンロードフォルダを種類別に自動仕分け。デスクトップアプリ風UIのデモ。', url: 'tidy-desk-demo/index.html', thumb: 'tidy-desk-demo/assets/images/preview.png', badge: 'App', featured: true },
   { type: 'lp', tags: ['美容'], title: '美容室 LUMIÈRE', category: '美容・サロン', desc: 'メニュー・スタイリスト紹介・予約導線を備えた美容室LP。', url: 'salon-lp/index.html', thumb: 'salon-lp/assets/images/concept-main.jpg', badge: 'LP' },
   { type: 'lp', tags: ['美容', '整体'], title: '整体院 和', category: '整体・ウェルネス', desc: '施術メニュー・お客様の声・初回体験訴求の整体LP。', url: 'wellness-lp/index.html', thumb: 'wellness-lp/assets/images/hero.jpg', badge: 'LP' },
   { type: 'lp', tags: ['飲食'], title: 'CAFÉ KOMOREBI', category: '飲食・カフェ', desc: 'こだわり・メニュー・空間紹介のカフェLP。', url: 'cafe-lp/index.html', thumb: 'cafe-lp/assets/images/hero.jpg', badge: 'LP' },
@@ -37,6 +38,7 @@ let searchQuery = '';
 
 function badgeClass(badge) {
   if (badge === 'Tool') return 'card__badge card__badge--tool';
+  if (badge === 'App') return 'card__badge card__badge--app';
   if (badge === 'HP') return 'card__badge card__badge--hp';
   return 'card__badge';
 }
