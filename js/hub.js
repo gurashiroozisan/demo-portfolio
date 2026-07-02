@@ -32,6 +32,29 @@ const PORTFOLIO = [
   { type: 'hp', tags: ['メディア', 'ブログ'], title: 'Tech & Life', category: 'メディア・ブログ', desc: '記事一覧＋詳細ページのメディアサイト構成。', url: 'media-site/index.html', thumb: 'media-site/assets/images/hero.jpg', badge: 'HP' },
 ];
 
+const CHART_STACK = ['HTML', 'CSS', 'JavaScript', 'Chart.js'];
+const CANVAS_STACK = ['HTML', 'CSS', 'JavaScript', 'Canvas API'];
+const BASE_STACK = ['HTML', 'CSS', 'JavaScript'];
+
+const STACK_BY_URL = {
+  'automation-demo/index.html': CHART_STACK,
+  'attendance-demo/index.html': CHART_STACK,
+  'invoice-demo/index.html': CHART_STACK,
+  'inventory-demo/index.html': CHART_STACK,
+  'expense-demo/index.html': CHART_STACK,
+  'resize-demo/index.html': CANVAS_STACK,
+};
+
+function getStack(item) {
+  return item.stack || STACK_BY_URL[item.url] || BASE_STACK;
+}
+
+function renderTechTags(stack) {
+  return `<div class="card__stack">${stack.map(t =>
+    `<span class="card__tech card__tech--${t.toLowerCase().replace(/\s+/g, '-').replace(/\./g, '')}">${t}</span>`
+  ).join('')}</div>`;
+}
+
 const grid = document.getElementById('grid');
 const searchInput = document.getElementById('search');
 const filterBtns = document.querySelectorAll('.filter__btn');
@@ -51,9 +74,10 @@ function badgeClass(badge) {
 function renderCard(item) {
   const featured = item.featured ? ' card--featured' : '';
   const action = item.type === 'tool' ? 'デモを試す →' : 'デモを見る →';
+  const stack = getStack(item);
   return `
     <a href="${item.url}" class="card${featured}" target="_blank" rel="noopener"
-       data-type="${item.type}" data-tags="${item.tags.join(' ')} ${item.title} ${item.category} ${item.desc}">
+       data-type="${item.type}" data-tags="${item.tags.join(' ')} ${item.title} ${item.category} ${item.desc} ${stack.join(' ')}">
       <div class="card__thumb">
         <img src="${item.thumb}" alt="${item.title}" loading="lazy">
         <span class="${badgeClass(item.badge)}">${item.badge}</span>
@@ -62,6 +86,7 @@ function renderCard(item) {
         <p class="card__category">${item.category}</p>
         <h2>${item.title}</h2>
         <p>${item.desc}</p>
+        ${renderTechTags(stack)}
         <span class="card__link">${action}</span>
       </div>
     </a>`;
@@ -71,7 +96,7 @@ function filterItems() {
   return PORTFOLIO.filter(item => {
     const matchType = currentFilter === 'all' || item.type === currentFilter;
     const q = searchQuery.toLowerCase();
-    const haystack = `${item.title} ${item.category} ${item.desc} ${item.tags.join(' ')}`.toLowerCase();
+    const haystack = `${item.title} ${item.category} ${item.desc} ${item.tags.join(' ')} ${getStack(item).join(' ')}`.toLowerCase();
     const matchSearch = !q || haystack.includes(q);
     return matchType && matchSearch;
   });
