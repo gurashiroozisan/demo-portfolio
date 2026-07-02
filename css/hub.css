@@ -129,6 +129,18 @@ a { color: inherit; text-decoration: none; }
   border-color: rgba(108, 142, 255, 0.3);
   color: var(--accent);
 }
+.card__badge--tool {
+  background: rgba(34, 197, 94, 0.15);
+  border-color: rgba(34, 197, 94, 0.3);
+  color: #4ADE80;
+}
+.card--featured {
+  border-color: rgba(34, 197, 94, 0.25);
+}
+.card--featured:hover {
+  border-color: rgba(34, 197, 94, 0.5);
+  box-shadow: 0 16px 48px rgba(34, 197, 94, 0.1);
+}
 .card__body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
 .card__category {
   font-size: 0.7rem;
