@@ -81,14 +81,22 @@ function renderCaseStudy(c) {
   </div>`;
 }
 
-const grid = document.getElementById('grid');
+const worksGroups = document.getElementById('worksGroups');
 const searchInput = document.getElementById('search');
 const filterBtns = document.querySelectorAll('.filter__btn');
 const resultCount = document.getElementById('resultCount');
 const emptyState = document.getElementById('emptyState');
 
+const TYPE_GROUPS = {
+  tool: '業務ツール',
+  lp: 'LP',
+  hp: 'HP・メディア',
+};
+const TYPE_ORDER = ['tool', 'lp', 'hp'];
+
 let currentFilter = 'all';
 let searchQuery = '';
+let openGroups = new Set();
 
 function badgeClass(badge) {
   if (badge === 'Tool') return 'card__badge card__badge--tool';
@@ -130,12 +138,99 @@ function filterItems() {
   });
 }
 
+function buildGroups(items) {
+  if (searchQuery) return null;
+
+  if (currentFilter === 'all') {
+    return TYPE_ORDER.map((type) => ({
+      key: type,
+      label: TYPE_GROUPS[type],
+      items: items.filter((i) => i.type === type),
+    })).filter((g) => g.items.length > 0);
+  }
+
+  const order = [];
+  items.forEach((item) => {
+    if (!order.includes(item.category)) order.push(item.category);
+  });
+
+  return order.map((category) => ({
+    key: category,
+    label: category,
+    items: items.filter((i) => i.category === category),
+  }));
+}
+
+function ensureOpenGroups(groups) {
+  if (!groups) return;
+  const keys = groups.map((g) => g.key);
+  const valid = [...openGroups].filter((k) => keys.includes(k));
+  openGroups = new Set(valid);
+  if (openGroups.size === 0 && groups.length > 0) {
+    openGroups.add(groups[0].key);
+  }
+}
+
+function bindGroupToggles() {
+  worksGroups.querySelectorAll('.works-group__toggle').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.group;
+      const panel = btn.nextElementSibling;
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+
+      if (expanded) {
+        openGroups.delete(key);
+        btn.setAttribute('aria-expanded', 'false');
+        panel.hidden = true;
+      } else {
+        openGroups.add(key);
+        btn.setAttribute('aria-expanded', 'true');
+        panel.hidden = false;
+      }
+    });
+  });
+}
+
+function renderFlat(items) {
+  worksGroups.className = 'grid';
+  worksGroups.innerHTML = items.map(renderCard).join('');
+}
+
+function renderGrouped(groups) {
+  ensureOpenGroups(groups);
+  worksGroups.className = 'works-groups';
+
+  worksGroups.innerHTML = groups.map((group) => {
+    const isOpen = openGroups.has(group.key);
+    return `
+      <section class="works-group">
+        <button type="button" class="works-group__toggle" data-group="${group.key}" aria-expanded="${isOpen}">
+          <span class="works-group__label">${group.label}</span>
+          <span class="works-group__count">${group.items.length} 件</span>
+          <span class="works-group__chevron" aria-hidden="true"></span>
+        </button>
+        <div class="works-group__panel" ${isOpen ? '' : 'hidden'}>
+          <div class="works-group__grid grid">${group.items.map(renderCard).join('')}</div>
+        </div>
+      </section>`;
+  }).join('');
+
+  bindGroupToggles();
+}
+
 function render() {
   const items = filterItems();
-  grid.innerHTML = items.map(renderCard).join('');
+  const groups = buildGroups(items);
+
+  if (groups && groups.length > 0) {
+    renderGrouped(groups);
+  } else {
+    renderFlat(items);
+  }
+
   resultCount.textContent = `${items.length} 件`;
   emptyState.hidden = items.length > 0;
-  grid.hidden = items.length === 0;
+  worksGroups.hidden = items.length === 0;
 }
 
 filterBtns.forEach(btn => {
@@ -143,6 +238,7 @@ filterBtns.forEach(btn => {
     filterBtns.forEach(b => b.classList.remove('is-active'));
     btn.classList.add('is-active');
     currentFilter = btn.dataset.filter;
+    openGroups = new Set();
     render();
   });
 });
