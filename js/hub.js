@@ -140,7 +140,7 @@ function filterItems() {
 
 function buildGroups(items) {
   if (searchQuery) return null;
-  if (currentFilter === 'lp') return null;
+  if (currentFilter === 'lp' || currentFilter === 'hp') return null;
 
   if (currentFilter === 'all') {
     return TYPE_ORDER.map((type) => ({
