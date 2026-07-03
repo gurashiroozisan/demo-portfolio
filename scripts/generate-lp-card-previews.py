@@ -152,6 +152,59 @@ def gyosei_preview():
     save(f"{BASE}/gyosei-lp/assets/images/preview.png", img)
 
 
+def wedding_preview():
+    img = Image.new("RGB", (W, H), "#FBF8F3")
+    d = ImageDraw.Draw(img)
+
+    d.rectangle([0, 0, W, 50], fill="#3A3228")
+    d.text((24, 16), "Wedding Venue  LUCE", fill="#F5EDE0", font=font(16, True))
+    d.text((560, 18), "プラン  ギャラリー", fill="#E8D5B5", font=font(11))
+    d.rounded_rectangle([700, 14, 776, 36], radius=2, fill="#B8956A")
+    d.text((712, 18), "見学予約", fill="#FFFFFF", font=font(10))
+
+    for y in range(50, 210):
+        t = (y - 50) / 160
+        r = int(58 + t * 30)
+        g = int(50 + t * 20)
+        b = int(40 + t * 15)
+        d.line([(0, y), (W, y)], fill=(r, g, b))
+
+    d.ellipse([280, 70, 520, 180], fill="#8A6B45")
+    d.ellipse([300, 85, 500, 165], fill="#B8956A")
+    d.text((24, 88), "WEDDING VENUE", fill="#E8D5B5", font=font(10))
+    d.text((24, 108), "ふたりの一日を、", fill="#FFFFFF", font=font(20, True))
+    d.text((24, 134), "光で包む。", fill="#FFFFFF", font=font(20, True))
+    d.text((24, 168), "表参道・ガーデン挙式・披露宴", fill="#F5EDE0", font=font(11))
+    d.rounded_rectangle([24, 182, 130, 202], radius=2, fill="#B8956A")
+    d.text((36, 186), "見学を予約する", fill="#FFFFFF", font=font(9))
+
+    d.text((24, 224), "PLANS", fill="#B8956A", font=font(10))
+    d.text((24, 242), "ウェディングプラン", fill="#3A3228", font=font(15, True))
+
+    plans = [
+        ("ガーデン挙式", "¥880,000〜", False),
+        ("チャペル＋披露宴", "¥1,280,000〜", True),
+        ("プライベート", "¥1,680,000〜", False),
+    ]
+    for i, (name, price, featured) in enumerate(plans):
+        x = 24 + i * 252
+        outline = "#B8956A" if featured else "#E8D5B5"
+        d.rounded_rectangle([x, 268, x + 236, 400], radius=2, fill="#FFFFFF", outline=outline, width=2 if featured else 1)
+        if featured:
+            d.text((x + 70, 276), "POPULAR", fill="#B8956A", font=font(8))
+        d.text((x + 16, 296), name, fill="#3A3228", font=font(13, True))
+        d.text((x + 16, 320), price, fill="#8A6B45", font=font(12, True))
+        for j in range(3):
+            d.text((x + 16, 346 + j * 18), "・プラン内容", fill="#7A6F62", font=font(9))
+
+    for i in range(4):
+        x = 24 + i * 188
+        d.rounded_rectangle([x, 418, x + 172, 488], radius=2, fill="#F5EDE0", outline="#E8D5B5")
+        d.ellipse([x + 46, 432, x + 126, 472], fill="#D4C4A8")
+
+    save(f"{BASE}/wedding-lp/assets/images/preview.png", img)
+
+
 def hero_from_preview(preview_path, hero_path, size=(1600, 900)):
     img = Image.open(preview_path).convert("RGB")
     img = img.resize(size, Image.Resampling.LANCZOS)
@@ -163,8 +216,9 @@ if __name__ == "__main__":
     media_preview()
     saas_preview()
     gyosei_preview()
+    wedding_preview()
 
-    for folder in ("media-site", "saas-lp", "gyosei-lp"):
+    for folder in ("media-site", "saas-lp", "gyosei-lp", "wedding-lp"):
         preview = f"{BASE}/{folder}/assets/images/preview.png"
         hero = f"{BASE}/{folder}/assets/images/hero.jpg"
         hero_from_preview(preview, hero)
