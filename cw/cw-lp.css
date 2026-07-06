@@ -195,7 +195,7 @@
   height: 100%;
 }
 
-.cw-lp .cw-lp-hero__img {
+.cw-lp .cw-lp-hero__video {
   position: absolute;
   inset: 0;
   display: block;
@@ -203,7 +203,7 @@
   height: 100%;
   max-width: none;
   object-fit: cover;
-  object-position: center 25%;
+  object-position: center center;
 }
 
 .cw-lp-hero__content {
@@ -690,8 +690,8 @@
     max-height: 280px;
     height: 280px;
   }
-  .cw-lp .cw-lp-hero__img {
-    object-position: center 28%;
+  .cw-lp .cw-lp-hero__video {
+    object-position: center center;
   }
   .cw-lp-hero__panel { padding: 40px 0 44px; }
   .cw-lp-set { padding: 28px 20px; }

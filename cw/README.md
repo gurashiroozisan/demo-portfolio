@@ -15,6 +15,8 @@ cw/
 ├── cw-lp.html          … ローカル確認用
 ├── cw-lp.css
 ├── cw-lp.js
+├── cw-videos/
+│   └── hero.mp4          … ヒーロー動画（元LPより）
 └── cw-images/          … 既存LPから流用した画像
 ```
 
@@ -22,6 +24,7 @@ cw/
 
 1. `cw-lp.css` / `cw-lp.js` をテーマの `assets/` に配置
 2. `cw-images/` 内の画像を `assets/cw-images/` に配置
+3. `cw-videos/hero.mp4` を `assets/cw-videos/` に配置
 3. `page.cw-lp.liquid` を `templates/` に配置
 4. 管理画面でページを作成し、テンプレート「cw-lp」を選択
 
