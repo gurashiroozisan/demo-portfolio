@@ -1,0 +1,334 @@
+﻿{% layout none %}
+{% comment %}
+  Food Huggers 提案LP — Shopify実装用
+  assets/ に cw-lp.css, cw-lp.js, cw-images/* をアップロードしてください。
+{% endcomment %}
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Food Huggers（フードハガーズ）— ラップいらずのシリコン保存カバー。切ってはめるだけ、何度でも使える一生もののキッチン用品。">
+  <title>Food Huggers | ラップ、もう切らなくていい。</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ 'cw-lp.css' | asset_url }}">
+</head>
+<body>
+
+<div class="cw-lp">
+
+  <!-- ▼ 固定ヘッダー -->
+  <header class="cw-lp-header">
+    <div class="cw-lp-container cw-lp-header__inner">
+      <a href="#" class="cw-lp-header__logo">
+        <img src="{{ 'cw-images/logo.png' | asset_url }}" alt="Food Huggers" width="160" height="36">
+      </a>
+      <nav class="cw-lp-header__nav" id="cw-lp-nav">
+        <a href="#cw-lp-benefits">3つのメリット</a>
+        <a href="#cw-lp-products">商品について</a>
+        <a href="#cw-lp-voice">お客様の声</a>
+        <a href="#cw-lp-faq">よくある質問</a>
+        <a href="#cw-lp-cta" class="cw-lp-btn cw-lp-btn--primary cw-lp-header__cta">詳しく見る</a>
+      </nav>
+      <button class="cw-lp-burger" type="button" aria-label="メニュー" aria-expanded="false" aria-controls="cw-lp-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ▼ ヒーローセクション -->
+  <section class="cw-lp-hero">
+    <div class="cw-lp-hero__bg">
+      <img src="{{ 'cw-images/hero.jpg' | asset_url }}" alt="キッチンで野菜を保存する様子" width="1600" height="900">
+    </div>
+    <div class="cw-lp-hero__overlay"></div>
+    <div class="cw-lp-container cw-lp-hero__content">
+      <p class="cw-lp-hero__badge">シリコン保存カバー｜何度でも使える</p>
+      <h1>ラップ、<br>もう切らなくていい。</h1>
+      <p class="cw-lp-hero__text">
+        切った野菜や開けた缶詰に、はめるだけ。<br>
+        毎日の保存が、ぐっとラクになります。
+      </p>
+      <a href="#cw-lp-set" class="cw-lp-btn cw-lp-btn--primary">8サイズセットを見る</a>
+      <p class="cw-lp-hero__note">※ 食洗機・電子レンジ対応（200℃まで耐熱）</p>
+    </div>
+  </section>
+
+  <!-- ▼ 悩みセクション -->
+  <section class="cw-lp-section cw-lp-section--white" id="cw-lp-trouble">
+    <div class="cw-lp-container">
+      <div class="cw-lp-trouble__grid cw-lp-reveal">
+        <div>
+          <span class="cw-lp-label">Daily Trouble</span>
+          <h2 class="cw-lp-heading">こんなこと、<br>ありませんか？</h2>
+          <p class="cw-lp-lead">毎日のキッチンで、小さなストレスが積み重なっていませんか。Food Huggersは、そんな「当たり前」の不便をやさしく解決します。</p>
+          <ul class="cw-lp-trouble__list">
+            <li>ラップがすぐになくなる。スーパーで買い忘れることも</li>
+            <li>うまく貼れなくて、何度も貼り直してしまう</li>
+            <li>残った野菜を短く切って、もったいなく捨てている</li>
+            <li>容器のフタが合わず、冷蔵庫の中が散らかる</li>
+          </ul>
+        </div>
+        <div class="cw-lp-trouble__img">
+          <img src="{{ 'cw-images/nayami.jpg' | asset_url }}" alt="ラップで保存する煩わしさ" width="800" height="600" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ▼ 3つのメリット -->
+  <section class="cw-lp-section cw-lp-section--sage" id="cw-lp-benefits">
+    <div class="cw-lp-container">
+      <div class="cw-lp-section-head cw-lp-reveal">
+        <span class="cw-lp-label">Why Food Huggers</span>
+        <h2 class="cw-lp-heading">Food Huggersが選ばれる<br>3つの理由</h2>
+        <p class="cw-lp-lead">難しい操作はいりません。はめるだけで、毎日の保存が変わります。</p>
+      </div>
+      <div class="cw-lp-benefits cw-lp-reveal">
+        <article class="cw-lp-benefit">
+          <div class="cw-lp-benefit__num">1</div>
+          <h3>ラップ代がかからない</h3>
+          <p>一度買えば何度でも使えるから、ラップの買い足しや切り直しの手間がなくなります。</p>
+        </article>
+        <article class="cw-lp-benefit">
+          <div class="cw-lp-benefit__num">2</div>
+          <h3>はめるだけ、3秒で保存</h3>
+          <p>切った野菜や缶詰にそのままはめるだけ。面倒な準備や片付けがいりません。</p>
+        </article>
+        <article class="cw-lp-benefit">
+          <div class="cw-lp-benefit__num">3</div>
+          <h3>冷蔵庫がすっきり</h3>
+          <p>重ねて収納でき、中身も見やすい。探す手間が減り、食材の無駄も防げます。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ▼ 商品紹介セクション -->
+  <section class="cw-lp-section cw-lp-section--white" id="cw-lp-products">
+    <div class="cw-lp-container">
+
+      <div class="cw-lp-product cw-lp-reveal">
+        <div class="cw-lp-product__visual">
+          <img src="{{ 'cw-images/food-huggers.png' | asset_url }}" alt="フードハガーズ 5サイズセット" width="600" height="600" loading="lazy">
+        </div>
+        <div class="cw-lp-product__body">
+          <span class="cw-lp-product__tag">セット内容 ①</span>
+          <h2 class="cw-lp-heading">フードハガーズ<br>5サイズセット</h2>
+          <p class="cw-lp-lead">切った野菜・果物、開けた缶詰に。特許取得の「ハグ構造」で、しっかり密閉して鮮度をキープします。</p>
+          <ul class="cw-lp-product__points">
+            <li>玉ねぎ・レモン・きゅうり・トマト缶など幅広く対応</li>
+            <li>1週間で23%以上の水分キープ（未使用時比）</li>
+            <li>5サイズで重ねてコンパクトに収納</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cw-lp-product cw-lp-product--reverse cw-lp-reveal">
+        <div class="cw-lp-product__visual">
+          <img src="{{ 'cw-images/lid-huggers.png' | asset_url }}" alt="リドハガーズ 3サイズセット" width="600" height="600" loading="lazy">
+        </div>
+        <div class="cw-lp-product__body">
+          <span class="cw-lp-product__tag">セット内容 ②</span>
+          <h2 class="cw-lp-heading">リドハガーズ<br>3サイズセット</h2>
+          <p class="cw-lp-lead">お持ちのボウルや容器が、そのまま保存容器に。フタが合わないストレスから解放されます。</p>
+          <ul class="cw-lp-product__points">
+            <li>あらゆるボウル・容器にフィット</li>
+            <li>透明なので中身が見え、食材の見落としを防止</li>
+            <li>強化ガラス製ボウルなら重ねて収納も可能</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ▼ 特徴グリッド -->
+      <div class="cw-lp-section-head cw-lp-reveal" style="margin-top:64px">
+        <span class="cw-lp-label">Features</span>
+        <h2 class="cw-lp-heading">毎日使うから、<br>お手入れもかんたん</h2>
+      </div>
+      <div class="cw-lp-features cw-lp-reveal">
+        <article class="cw-lp-feature">
+          <div class="cw-lp-feature__img">
+            <img src="{{ 'cw-images/feature-veggie.jpg' | asset_url }}" alt="野菜の保存" loading="lazy">
+          </div>
+          <h3>野菜・果物に</h3>
+          <p>切り口にぴったりフィット</p>
+        </article>
+        <article class="cw-lp-feature">
+          <div class="cw-lp-feature__img">
+            <img src="{{ 'cw-images/feature-fridge.jpg' | asset_url }}" alt="冷蔵庫の収納" loading="lazy">
+          </div>
+          <h3>冷蔵庫すっきり</h3>
+          <p>重ねて収納、探す手間なし</p>
+        </article>
+        <article class="cw-lp-feature">
+          <div class="cw-lp-feature__img">
+            <img src="{{ 'cw-images/feature-wash.jpg' | asset_url }}" alt="食洗機対応" loading="lazy">
+          </div>
+          <h3>食洗機OK</h3>
+          <p>食器と一緒に洗えて楽ちん</p>
+        </article>
+        <article class="cw-lp-feature">
+          <div class="cw-lp-feature__img">
+            <img src="{{ 'cw-images/feature-microwave.png' | asset_url }}" alt="電子レンジ対応" loading="lazy">
+          </div>
+          <h3>電子レンジOK</h3>
+          <p>200℃まで耐熱、冷凍も可</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ▼ 8サイズセット訴求 -->
+  <section class="cw-lp-section cw-lp-section--sage" id="cw-lp-set">
+    <div class="cw-lp-container">
+      <div class="cw-lp-set cw-lp-reveal">
+        <div class="cw-lp-set__visual">
+          <img src="{{ 'cw-images/product-set.jpg' | asset_url }}" alt="フードハガーズ＋リドハガーズ 8サイズセット" width="800" height="600" loading="lazy">
+        </div>
+        <div class="cw-lp-set__body">
+          <span class="cw-lp-label">Special Set</span>
+          <h2 class="cw-lp-heading">フードハガーズ5サイズ<br>＋ リドハガーズ3サイズ</h2>
+          <p class="cw-lp-set__price">特別8サイズセット</p>
+          <p class="cw-lp-lead">野菜の保存から、ボウルのフタ代わりまで。キッチンで必要なサイズが、これひとつで揃います。</p>
+          <ul class="cw-lp-set__includes">
+            <li>フードハガーズ XS〜XL（5サイズ）</li>
+            <li>リドハガーズ XS〜M（3サイズ）</li>
+            <li>100%食品安全シリコン製</li>
+          </ul>
+          <a href="#cw-lp-cta" class="cw-lp-btn cw-lp-btn--primary">購入・先行案内はこちら</a>
+          <p class="cw-lp-hero__note" style="color:var(--cw-lp-brown-light);margin-top:12px">※ 写真のボウル（容器）はセットに含まれません</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ▼ 使い方セクション -->
+  <section class="cw-lp-section cw-lp-section--white">
+    <div class="cw-lp-container">
+      <div class="cw-lp-section-head cw-lp-reveal">
+        <span class="cw-lp-label">How to Use</span>
+        <h2 class="cw-lp-heading">使い方は、とてもシンプル</h2>
+        <p class="cw-lp-lead">説明書を読み込む必要はありません。はめるだけの3ステップです。</p>
+      </div>
+      <div class="cw-lp-steps cw-lp-reveal">
+        <article class="cw-lp-step">
+          <h3>サイズを選ぶ</h3>
+          <p>食材や容器に合わせて、ぴったりのサイズを選びます。</p>
+        </article>
+        <article class="cw-lp-step">
+          <h3>はめる</h3>
+          <p>切り口や容器の上に、そのままかぶせるだけ。</p>
+        </article>
+        <article class="cw-lp-step">
+          <h3>冷蔵庫へ</h3>
+          <p>そのまま冷蔵庫へ。あとは食洗機で洗って繰り返し使えます。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ▼ お客様の声 -->
+  <section class="cw-lp-section cw-lp-section--sage" id="cw-lp-voice">
+    <div class="cw-lp-container">
+      <div class="cw-lp-section-head cw-lp-reveal">
+        <span class="cw-lp-label">Voice</span>
+        <h2 class="cw-lp-heading">ご愛用者さまの声</h2>
+        <p class="cw-lp-lead">アメリカをはじめ世界各国で愛用されています。</p>
+      </div>
+      <div class="cw-lp-voices cw-lp-reveal">
+        <blockquote class="cw-lp-voice">
+          <div class="cw-lp-voice__stars">★★★★★</div>
+          <p>「タッパーの数が減って冷蔵庫がすっきり。ラップを切る手間もなくなり、毎日の料理が本当に楽になりました。」</p>
+          <cite>— 50代・主婦</cite>
+        </blockquote>
+        <blockquote class="cw-lp-voice">
+          <div class="cw-lp-voice__stars">★★★★★</div>
+          <p>「使いかけの野菜が並んでいる冷蔵庫の方が、ずっときれいに見えます。食洗機に入れられるのも助かります。」</p>
+          <cite>— 60代・パート勤務</cite>
+        </blockquote>
+        <blockquote class="cw-lp-voice">
+          <div class="cw-lp-voice__stars">★★★★★</div>
+          <p>「娘へのプレゼントに贈りました。『こういうの欲しかった』と喜ばれて、自分用にも追加で買いました。」</p>
+          <cite>— 50代・会社員</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ▼ ギフト訴求 -->
+  <section class="cw-lp-section cw-lp-section--white">
+    <div class="cw-lp-container">
+      <div class="cw-lp-trouble__grid cw-lp-reveal">
+        <div class="cw-lp-trouble__img">
+          <img src="{{ 'cw-images/gift.jpg' | asset_url }}" alt="ギフトとしてのFood Huggers" width="800" height="600" loading="lazy">
+        </div>
+        <div>
+          <span class="cw-lp-label">Gift</span>
+          <h2 class="cw-lp-heading">「これ、便利！」と<br>喜ばれる贈り物に</h2>
+          <p class="cw-lp-lead">引越しや誕生日の贈り物に。お菓子やお花とは違う、実用的でセンスのいいキッチンギフトとして人気です。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ▼ FAQセクション -->
+  <section class="cw-lp-section cw-lp-section--sage" id="cw-lp-faq">
+    <div class="cw-lp-container">
+      <div class="cw-lp-section-head cw-lp-reveal">
+        <span class="cw-lp-label">FAQ</span>
+        <h2 class="cw-lp-heading">よくあるご質問</h2>
+      </div>
+      <div class="cw-lp-faq cw-lp-reveal">
+        <div class="cw-lp-faq__item">
+          <button class="cw-lp-faq__q" type="button" aria-expanded="false">食洗機は使えますか？</button>
+          <div class="cw-lp-faq__a">はい、食洗機に対応しています。使い終わったら食器と一緒に入れるだけで、簡単にお手入れできます。</div>
+        </div>
+        <div class="cw-lp-faq__item">
+          <button class="cw-lp-faq__q" type="button" aria-expanded="false">電子レンジは使えますか？</button>
+          <div class="cw-lp-faq__a">電子レンジでの使用が可能です。耐熱温度は約200℃で、冷凍保存にもお使いいただけます。</div>
+        </div>
+        <div class="cw-lp-faq__item">
+          <button class="cw-lp-faq__q" type="button" aria-expanded="false">どんな食材に使えますか？</button>
+          <div class="cw-lp-faq__a">玉ねぎ・レモン・きゅうり・ミニトマトなど、断面のある野菜・果物全般に。開封したトマト缶・ツナ缶のフタとしても使えます。</div>
+        </div>
+        <div class="cw-lp-faq__item">
+          <button class="cw-lp-faq__q" type="button" aria-expanded="false">玉ねぎの匂いは残りませんか？</button>
+          <div class="cw-lp-faq__a">100%食品安全シリコン製です。香りの強い食材の後は、重曹での洗浄やオーブン加熱で匂いを取り除くことができます。</div>
+        </div>
+        <div class="cw-lp-faq__item">
+          <button class="cw-lp-faq__q" type="button" aria-expanded="false">どこで購入できますか？</button>
+          <div class="cw-lp-faq__a">日本での発売準備を進めています。LINE登録で発売日や先行案内をいち早くお届けします。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ▼ CTAセクション -->
+  <section class="cw-lp-cta" id="cw-lp-cta">
+    <div class="cw-lp-container cw-lp-reveal">
+      <h2 class="cw-lp-heading">毎日のキッチンを、<br>もっとラクに。</h2>
+      <p class="cw-lp-lead">発売決定時に先行案内をお届けします。LINE登録は無料、いつでも解除できます。</p>
+      <div class="cw-lp-cta__btns">
+        <a href="https://foodhuggers-jp.myshopify.com/pages/fh-lp2" class="cw-lp-btn cw-lp-btn--line" target="_blank" rel="noopener">LINEで先行案内を受け取る</a>
+        <a href="#cw-lp-set" class="cw-lp-btn cw-lp-btn--primary" style="background:#fff;color:var(--cw-lp-sage)">セット内容をもう一度見る</a>
+      </div>
+      <p class="cw-lp-cta__note">※ 本ページは制作デモです。ボタンリンクはクライアント様にて差し替えください。</p>
+    </div>
+  </section>
+
+  <!-- ▼ フッター -->
+  <footer class="cw-lp-footer">
+    <div class="cw-lp-container">
+      <p>&copy; Food Huggers Japan — Demo LP by Alpha Script</p>
+    </div>
+  </footer>
+
+</div>
+
+<script src="{{ 'cw-lp.js' | asset_url }}" defer></script>
+</body>
+</html>
+
