@@ -165,30 +165,29 @@
 /* ▼ ヒーロー */
 .cw-lp-hero {
   position: relative;
-  overflow: hidden;
-  background: var(--cw-lp-brown);
-  color: var(--cw-lp-white);
+  background: var(--cw-lp-cream);
+  color: var(--cw-lp-brown);
 }
 
 .cw-lp-hero--split {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  min-height: 0;
-  max-height: 420px;
+  align-items: stretch;
 }
 
 .cw-lp-hero__panel {
   display: flex;
   align-items: center;
-  background: linear-gradient(145deg, #3D3429 0%, #52463A 100%);
-  padding: 40px 0;
+  background: linear-gradient(155deg, #F3EDE5 0%, #E6DDD2 100%);
+  padding: 48px 0;
 }
 
 .cw-lp-hero__visual {
   position: relative;
   overflow: hidden;
   background: #F5EDE0;
-  min-height: 0;
+  min-height: 400px;
+  max-height: 460px;
 }
 
 .cw-lp-hero__visual img {
@@ -207,39 +206,42 @@
 
 .cw-lp-hero__badge {
   display: inline-block;
-  margin-bottom: 12px;
-  padding: 5px 14px;
+  margin-bottom: 14px;
+  padding: 6px 14px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.14);
-  font-size: 0.78rem;
-  letter-spacing: 0.08em;
+  background: var(--cw-lp-sage-light);
+  color: var(--cw-lp-sage);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  font-weight: 500;
 }
 
 .cw-lp-hero h1 {
   font-family: var(--cw-lp-serif);
-  font-size: clamp(1.65rem, 4vw, 2.2rem);
+  font-size: clamp(1.75rem, 4.2vw, 2.35rem);
   font-weight: 600;
-  line-height: 1.4;
-  margin-bottom: 12px;
+  line-height: 1.45;
+  margin-bottom: 14px;
+  color: var(--cw-lp-brown);
 }
 
 .cw-lp-hero__text {
-  font-size: 0.98rem;
-  line-height: 1.85;
-  opacity: 0.92;
-  margin-bottom: 22px;
+  font-size: 1rem;
+  line-height: 1.9;
+  color: var(--cw-lp-brown-light);
+  margin-bottom: 24px;
 }
 
 .cw-lp-hero__note {
-  margin-top: 12px;
-  font-size: 0.78rem;
-  opacity: 0.75;
+  margin-top: 14px;
+  font-size: 0.8rem;
+  color: var(--cw-lp-brown-light);
 }
 
 .cw-lp-hero .cw-lp-btn {
-  min-height: 48px;
-  padding: 12px 28px;
-  font-size: 0.95rem;
+  min-height: 50px;
+  padding: 13px 30px;
+  font-size: 0.96rem;
 }
 
 /* ▼ 悩みセクション */
@@ -673,16 +675,15 @@
   .cw-lp-steps { grid-template-columns: 1fr; }
   .cw-lp-hero--split {
     grid-template-columns: 1fr;
-    max-height: none;
   }
   .cw-lp-hero__visual {
     order: -1;
     min-height: 0;
-    max-height: 220px;
+    max-height: 240px;
   }
   .cw-lp-hero__visual img {
     object-position: 72% 42%;
   }
-  .cw-lp-hero__panel { padding: 36px 0 40px; }
+  .cw-lp-hero__panel { padding: 40px 0 44px; }
   .cw-lp-set { padding: 28px 20px; }
 }
