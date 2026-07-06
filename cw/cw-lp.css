@@ -173,21 +173,22 @@
 .cw-lp-hero--split {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  min-height: 520px;
+  min-height: 0;
+  max-height: 420px;
 }
 
 .cw-lp-hero__panel {
   display: flex;
   align-items: center;
   background: linear-gradient(145deg, #3D3429 0%, #52463A 100%);
-  padding: 72px 0;
+  padding: 40px 0;
 }
 
 .cw-lp-hero__visual {
   position: relative;
   overflow: hidden;
   background: #F5EDE0;
-  min-height: 320px;
+  min-height: 0;
 }
 
 .cw-lp-hero__visual img {
@@ -206,33 +207,39 @@
 
 .cw-lp-hero__badge {
   display: inline-block;
-  margin-bottom: 20px;
-  padding: 6px 16px;
+  margin-bottom: 12px;
+  padding: 5px 14px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.14);
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   letter-spacing: 0.08em;
 }
 
 .cw-lp-hero h1 {
   font-family: var(--cw-lp-serif);
-  font-size: clamp(1.85rem, 4.5vw, 2.65rem);
+  font-size: clamp(1.65rem, 4vw, 2.2rem);
   font-weight: 600;
-  line-height: 1.45;
-  margin-bottom: 20px;
+  line-height: 1.4;
+  margin-bottom: 12px;
 }
 
 .cw-lp-hero__text {
-  font-size: 1.05rem;
-  line-height: 2;
+  font-size: 0.98rem;
+  line-height: 1.85;
   opacity: 0.92;
-  margin-bottom: 32px;
+  margin-bottom: 22px;
 }
 
 .cw-lp-hero__note {
-  margin-top: 16px;
-  font-size: 0.82rem;
+  margin-top: 12px;
+  font-size: 0.78rem;
   opacity: 0.75;
+}
+
+.cw-lp-hero .cw-lp-btn {
+  min-height: 48px;
+  padding: 12px 28px;
+  font-size: 0.95rem;
 }
 
 /* ▼ 悩みセクション */
@@ -664,18 +671,18 @@
   .cw-lp-features,
   .cw-lp-voices,
   .cw-lp-steps { grid-template-columns: 1fr; }
-  .cw-lp-hero__content { padding: 64px 0 72px; }
   .cw-lp-hero--split {
     grid-template-columns: 1fr;
+    max-height: none;
   }
   .cw-lp-hero__visual {
     order: -1;
-    min-height: 280px;
-    max-height: 340px;
+    min-height: 0;
+    max-height: 220px;
   }
   .cw-lp-hero__visual img {
     object-position: 72% 42%;
   }
-  .cw-lp-hero__panel { padding: 48px 0 56px; }
+  .cw-lp-hero__panel { padding: 36px 0 40px; }
   .cw-lp-set { padding: 28px 20px; }
 }
