@@ -28,10 +28,6 @@
 }
 
 .cw-lp img { max-width: 100%; height: auto; display: block; }
-
-.cw-lp-hero__visual img {
-  max-width: none;
-}
 .cw-lp a { color: inherit; text-decoration: none; }
 
 .cw-lp-container {
