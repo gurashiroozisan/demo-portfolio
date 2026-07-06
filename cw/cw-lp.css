@@ -170,28 +170,38 @@
   color: var(--cw-lp-white);
 }
 
-.cw-lp-hero__bg {
-  position: absolute;
-  inset: 0;
+.cw-lp-hero--split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-height: 520px;
 }
 
-.cw-lp-hero__bg img {
+.cw-lp-hero__panel {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(145deg, #3D3429 0%, #52463A 100%);
+  padding: 72px 0;
+}
+
+.cw-lp-hero__visual {
+  position: relative;
+  overflow: hidden;
+  background: #F5EDE0;
+  min-height: 320px;
+}
+
+.cw-lp-hero__visual img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.55;
-}
-
-.cw-lp-hero__overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(105deg, rgba(61, 52, 41, 0.88) 0%, rgba(61, 52, 41, 0.45) 55%, rgba(61, 52, 41, 0.2) 100%);
+  /* 比較画像の右側（フードハガーズ使用後）を中心に表示 */
+  object-position: 78% center;
 }
 
 .cw-lp-hero__content {
   position: relative;
-  padding: 88px 0 96px;
-  max-width: 520px;
+  padding: 0;
+  max-width: 480px;
 }
 
 .cw-lp-hero__badge {
@@ -655,5 +665,17 @@
   .cw-lp-voices,
   .cw-lp-steps { grid-template-columns: 1fr; }
   .cw-lp-hero__content { padding: 64px 0 72px; }
+  .cw-lp-hero--split {
+    grid-template-columns: 1fr;
+  }
+  .cw-lp-hero__visual {
+    order: -1;
+    min-height: 280px;
+    max-height: 340px;
+  }
+  .cw-lp-hero__visual img {
+    object-position: 72% 42%;
+  }
+  .cw-lp-hero__panel { padding: 48px 0 56px; }
   .cw-lp-set { padding: 28px 20px; }
 }
